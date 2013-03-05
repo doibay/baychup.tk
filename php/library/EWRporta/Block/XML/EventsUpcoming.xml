@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="EventsUpcoming" title="XenAtendo: Upcoming Events" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+10 minutes">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="eventsupcoming_range" edit_format="spinbox" data_type="unsigned_integer" display_order="1">
+      <option_value>6</option_value>
+      <edit_format_params>min=1
+max=48</edit_format_params>
+      <sub_options></sub_options>
+      <title>Time Range</title>
+      <explain><![CDATA[The time range to buffer in new events.]]></explain>
+    </option>
+    <option option_id="eventsupcoming_format" edit_format="select" data_type="string" display_order="2">
+      <option_value>hours</option_value>
+      <edit_format_params>hours=Hours
+days=Days
+weeks=Weeks
+months=Months</edit_format_params>
+      <sub_options></sub_options>
+      <title>Range Format</title>
+      <explain><![CDATA[The format to apply to the time range buffer.]]></explain>
+    </option>
+    <option option_id="eventsupcoming_stream" edit_format="onoff" data_type="boolean" display_order="3">
+      <option_value>1</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Only Show Streams</title>
+      <explain><![CDATA[If selected, only events that have a verified stream will be displayed.]]></explain>
+    </option>
+    <option option_id="eventsupcoming_venue" edit_format="onoff" data_type="boolean" display_order="4">
+      <option_value>0</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Show Venue Information</title>
+      <explain><![CDATA[If selected, the block will display event venue information.<br/>This option will be ignored if the streams option has been set.]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_EventsUpcoming"><![CDATA[<xen:if is="{$EventsUpcoming}">
+	<xen:require css="EWRatendo.css" />
+	<xen:require css="EWRblock_EventsUpcoming.css" />
+	<xen:if is="{$option.showStream}"><xen:require js="js/8wayrun/EWRatendo_ajax.js" /></xen:if>
+
+	<div class="section eventList" id="eventsUpcoming">
+		<div class="secondaryContent" >
+			<h3>{xen:phrase upcoming_events}</h3>
+
+			<ul style="margin-top: -10px;">
+				<xen:foreach loop="$EventsUpcoming" value="$event">
+					<xen:include template="EWRatendo_Bit" />
+				</xen:foreach>
+			</ul>
+		</div>
+	</div>
+</xen:if>]]></template>
+    <template title="EWRblock_EventsUpcoming.css"><![CDATA[#eventsUpcoming li .secondaryContent
+{
+	border: 0px;
+	border-radius: 0px;
+	box-shadow: none !important;
+	font-size: 13px;
+
+	{xen:property secondaryContent}
+
+	padding: 0px;
+}]]></template>
+  </templates>
+</block>

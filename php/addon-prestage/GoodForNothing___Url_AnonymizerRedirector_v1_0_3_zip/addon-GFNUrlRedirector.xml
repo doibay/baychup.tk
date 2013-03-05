@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="GFNUrlRedirector" title="GoodForNothing Url Redirector" version_string="1.0.3" version_id="9" url="https://www.gfncoders.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="UrlRedirector_Options"><![CDATA[<br /><br /><div align="center"><p>If you are happy with my add-on, please consider a donation as creating add-ons for XenForo is my only source of income.</p>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZS97QW684BNN" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></div>
+<script>
+$(document).ready(function() {
+    if ($('#ctrl_optionsGFNUrlRedirector_EnableAutoRedirect_1').is(":checked")) {
+        $('#ctrl_optionsGFNUrlRedirector_Title').parent().parent().hide();
+        $('#ctrl_optionsGFNUrlRedirector_Message').parent().parent().hide();
+    }
+    if (!$('#ctrl_optionsGFNUrlRedirector_EnableAutoRedirect_1').is(":checked")) {
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Delay').parent().parent().hide();
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Title').parent().parent().hide();
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Message').parent().parent().hide();
+    }
+    $('#ctrl_optionsGFNUrlRedirector_EnableAutoRedirect_1').click(function() {
+        $('#ctrl_optionsGFNUrlRedirector_Title').parent().parent().slideToggle('medium');
+        $('#ctrl_optionsGFNUrlRedirector_Message').parent().parent().slideToggle('medium');
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Delay').parent().parent().slideToggle('medium');
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Title').parent().parent().slideToggle('medium');
+        $('#ctrl_optionsGFNUrlRedirector_AutoRedirect_Message').parent().parent().slideToggle('medium');
+    });
+});
+</script>]]></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="template_post_render" execute_order="1000" callback_class="GFNCoders_UrlRedirector_Listener_Template" callback_method="postRender" active="1" description="Renders Templates..."/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="GFNUrlRedirector" display_order="535" debug_only="0"/>
+    <option option_id="GFNUrlRedirector_AddJs" edit_format="template" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>UrlRedirector_Options</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="180"/>
+    </option>
+    <option option_id="GFNUrlRedirector_AutoRedirect_Delay" edit_format="spinbox" data_type="integer" can_backup="1">
+      <default_value>3</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="120"/>
+    </option>
+    <option option_id="GFNUrlRedirector_AutoRedirect_Message" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>You are now leaving {board} and being redirected to {url} in {delay} seconds...</default_value>
+      <edit_format_params>rows=2</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="140"/>
+    </option>
+    <option option_id="GFNUrlRedirector_AutoRedirect_Title" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>Redirecting...</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="130"/>
+    </option>
+    <option option_id="GFNUrlRedirector_EnableAutoRedirect" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="110"/>
+    </option>
+    <option option_id="GFNUrlRedirector_Message" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>The referring site you are being redirected to is not controlled by us, so please remember not to enter your Username and Password unless you are on {boardUrl}. Also be sure to download software from sites you trust. And remember to read the site's Privacy Policy.</default_value>
+      <edit_format_params>rows=2</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="160"/>
+    </option>
+    <option option_id="GFNUrlRedirector_Title" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>Please be careful...</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="150"/>
+    </option>
+    <option option_id="GFNUrlRedirector_Whitelist" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>google.com|gfncoders.com|xenforo.com</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="GFNUrlRedirector" display_order="10"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="GFNUrlRedirector_continue" version_id="5" version_string="1.0.0"><![CDATA[Continue]]></phrase>
+    <phrase title="GFNUrlRedirector_nourl_error" version_id="5" version_string="1.0.0"><![CDATA[No URL specified!! You are now being redirected to forum index.]]></phrase>
+    <phrase title="GFNUrlRedirector_return" version_id="5" version_string="1.0.0"><![CDATA[Return]]></phrase>
+    <phrase title="GFNUrlRedirector_viewing_warning_message" version_id="5" version_string="1.0.0"><![CDATA[Viewing a warning message]]></phrase>
+    <phrase title="GFNUrlRedirector_visiting_outgoing_page" version_id="5" version_string="1.0.0"><![CDATA[Visiting an out-going page]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AddJs" version_id="5" version_string="1.0.0"><![CDATA[Add Js]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AddJs_explain" version_id="5" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Delay" version_id="5" version_string="1.0.0"><![CDATA[Delay]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Delay_explain" version_id="5" version_string="1.0.0"><![CDATA[The time of delay (in seconds) before the user is redirected.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Message" version_id="5" version_string="1.0.0"><![CDATA[Message]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Message_explain" version_id="5" version_string="1.0.0"><![CDATA[You can change the text that appears as the message or disclaimer on the redirection page.
+You may use the following variables: {board}, {boardUrl}, {url}, {delay}.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Title" version_id="5" version_string="1.0.0"><![CDATA[Title]]></phrase>
+    <phrase title="option_GFNUrlRedirector_AutoRedirect_Title_explain" version_id="5" version_string="1.0.0"><![CDATA[You can change the text that appears as the title on the redirection page.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_EnableAutoRedirect" version_id="5" version_string="1.0.0"><![CDATA[Enable automatic redirection]]></phrase>
+    <phrase title="option_GFNUrlRedirector_EnableAutoRedirect_explain" version_id="5" version_string="1.0.0"><![CDATA[You can disable automatic redirection if you want your visitor to click "Continue" on the redirection page to visit the page, instead of automatically being redirected.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Message" version_id="5" version_string="1.0.0"><![CDATA[Message]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Message_explain" version_id="5" version_string="1.0.0"><![CDATA[You can change the text that appears as the message or disclaimer on the redirection page.
+You may use the following variables: {board}, {boardUrl}, {url}.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Title" version_id="5" version_string="1.0.0"><![CDATA[Title]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Title_explain" version_id="5" version_string="1.0.0"><![CDATA[You can change the text that appears as the title on the redirection page.]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Whitelist" version_id="5" version_string="1.0.0"><![CDATA[Domain whitelist]]></phrase>
+    <phrase title="option_GFNUrlRedirector_Whitelist_explain" version_id="8" version_string="1.0.2"><![CDATA[Enter the domains that you don't to be anonymized/redirected. <b>Seperate domains with a "|" (without the quotes)</b>.]]></phrase>
+    <phrase title="option_group_GFNUrlRedirector" version_id="5" version_string="1.0.0"><![CDATA[GoodForNothing Url Anonymizer]]></phrase>
+    <phrase title="option_group_GFNUrlRedirector_description" version_id="5" version_string="1.0.0"><![CDATA[by <a href="https://www.gfncoders.com/" target="_blank"><b>GoodForNothing Coders</b></a>]]></phrase>
+  </phrases>
+  <route_prefixes>
+    <route_type type="public">
+      <prefix original_prefix="redirect" class="GFNCoders_UrlRedirector_Route_Prefix_Redirect" build_link="none"/>
+    </route_type>
+  </route_prefixes>
+  <style_properties/>
+  <templates>
+    <template title="GFNUrlRedirector_Copyright" version_id="5" version_string="1.0.0"><![CDATA[<xen:require css="GFNUrlRedirector_Copyright.css" />
+
+<div id="GFNCopyright"><a class="Tooltip" target="_blank" href="https://www.gfncoders.com/" data-offsetx="-13" title="XenForo add-on by GoodForNothing&trade; Coders">Powered by <b>GoodForNothing&trade; Url Redirector</b></a></div>]]></template>
+    <template title="GFNUrlRedirector_Copyright.css" version_id="5" version_string="1.0.0"><![CDATA[#GFNCopyright {
+	clear: both;
+	display: block;
+	font-size: 11px;
+	padding-top: 20px;
+	position: relative;
+	text-align: right;
+}
+#GFNCopyright a {
+	color: #646464;
+	transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	-o-transition: all 0.3s ease-in-out 0s;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	text-decoration: none !important;
+}
+#GFNCopyright a:hover, #GFNCopyright a:active, #GFNCopyright a:focus {
+	color: #969696;
+}
+]]></template>
+    <template title="GFNUrlRedirector_RedirectPage" version_id="5" version_string="1.0.0"><![CDATA[<xen:title>{xen:if '{$noUrl}', '{xen:phrase error}', '{$title}'}</xen:title>
+<xen:if is="{$noUrl}">
+	<xen:container var="$head.refresh"><meta http-equiv="refresh" content="{$xenOptions.GFNUrlRedirector_AutoRedirect_Delay}; {$xenOptions.boardUrl}" /></xen:container>
+<xen:elseif is="{$xenOptions.GFNUrlRedirector_EnableAutoRedirect}" />
+	<xen:container var="$head.refresh"><meta http-equiv="refresh" content="{$xenOptions.GFNUrlRedirector_AutoRedirect_Delay}; {$url}" /></xen:container>
+</xen:if>
+<xen:h1></xen:h1>
+
+<xen:require css="GFNUrlRedirector_RedirectPage.css" />
+
+<div id="GFNContainer">
+	<xen:if is="{$noUrl}">
+		<h3>{xen:phrase error}</h3>
+		<p class="message red">{xen:phrase GFNUrlRedirector_nourl_error}</p>
+	<xen:else />
+		<h3>{$title}</h3>
+		<p class="message red">{xen:raw $message}</p>
+		<div class="GFNfooter">
+			<ul class="GFNbuttons">
+				<li><a class="cancel" href="{$referrer}">{xen:phrase GFNUrlRedirector_return}</a></li>
+				<li><a href="{$url}" class="GFNSkip forward" rel="nofollow">{xen:phrase GFNUrlRedirector_continue}<xen:if is="{$xenOptions.GFNUrlRedirector_EnableAutoRedirect}"> (<span id="delay_footer">{$xenOptions.GFNUrlRedirector_AutoRedirect_Delay}</span>)</xen:if></a></li>
+			</ul>
+		</div>
+	</xen:if>
+</div>
+
+<xen:include template="GFNUrlRedirector_Copyright" />
+<xen:if is="{$xenOptions.GFNUrlRedirector_EnableAutoRedirect}">
+<script language="javascript" type="text/javascript">
+<!--
+x = {$xenOptions.GFNUrlRedirector_AutoRedirect_Delay} + 1;
+function countdown()
+{
+	x--;
+	if(x > -1)
+	{
+		document.getElementById("delay_footer").innerHTML = x;<xen:if is="{$containsDelay}">
+		document.getElementById("delay").innerHTML = x;</xen:if>
+		setTimeout('countdown()', 1000);
+	}
+}
+//-->
+countdown();
+</script>
+</xen:if>]]></template>
+    <template title="GFNUrlRedirector_RedirectPage.css" version_id="5" version_string="1.0.0"><![CDATA[#GFNContainer {
+	background-color: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	display: block;
+	margin: 0 auto;
+	padding: 30px 40px;
+	width: 640px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+	#GFNContainer h3 {
+		border-bottom: 1px solid #DDDDDD;
+		font-size: 20px;
+		font-weight: normal;
+		margin: 0 0 20px;
+		padding-bottom: 10px;
+	}
+	#GFNContainer p {
+		color: #222222;
+		font-size: 13px;
+		line-height: 20px;
+		margin: 5px auto 15px;
+	}
+	#GFNContainer .GFNfooter {
+		background-color: #FFFFFF;
+		padding: 20px 0 30px 0;
+	}
+		#GFNContainer .GFNfooter > ul.GFNbuttons {
+			float: right;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+			#GFNContainer .GFNfooter > ul.GFNbuttons > li {
+				float: left;
+			}
+				ul.GFNbuttons > li > a {
+					transition: all 0.2s linear 0s;
+					-moz-transition: all 0.2s linear 0s;
+					-o-transition: all 0.2s linear 0s;
+					-webkit-transition: all 0.2s linear 0s;
+					background-color: #00A5F0;
+					border: 1px solid rgba(0, 0, 0, 0.2);
+					border-radius: 5px;
+					box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 1px #FFFFFF;
+					color: #FFFFFF;
+					font-size: 11px;
+					font-weight: bold;
+					line-height: 30px;
+				  	min-width: 45px;
+					padding: 0 10px;
+					text-align: center;
+					text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+					display: block;
+					text-decoration: none !important;
+				}
+					ul.GFNbuttons > li > a:active {
+						box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+					}
+					ul.GFNbuttons > li > a.cancel {
+						background-color: #EEEEEE;
+						color: #888888;
+						margin-right: 10px;
+						text-shadow: 0 1px 0 #FFFFFF;
+					}
+					ul.GFNbuttons > li > a.forward:hover {
+						background-color: #24BBFF;
+					}
+					ul.GFNbuttons > li > a.forward:active {
+						background-color: #0082BD;
+					}]]></template>
+  </templates>
+  <bb_code_media_sites/>
+</addon>

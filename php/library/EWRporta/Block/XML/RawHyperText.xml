@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="RawHyperText" title="Raw HTML Block" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 days">
+  <admin_templates/>
+  <listeners/>
+  <options/>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_RawHyperText"><![CDATA[<xen:require css="EWRblock_RawHyperText.css" />
+
+<div class="section">
+    <div class="secondaryContent" id="charIcons">
+        <h3><a href="categories/86/">Soulcalibur V Character Soul Arenas</a></h3>
+	<ul>
+		<li><a href="forums/121/"><img class="Tooltip" src="images/alpha-patroklos.jpg" title="α Patroklos"></a></li>
+		<li><a href="forums/118/"><img class="Tooltip" src="images/aeon.jpg" title="Aeon (Lizardman)"></a></li>
+		<li><a href="forums/120/"><img class="Tooltip" src="images/algol.jpg" title="Algol"></a></li>
+		<li><a href="forums/111/"><img class="Tooltip" src="images/astaroth.jpg" title="Astaroth"></a></li>
+		<li><a href="forums/117/"><img class="Tooltip" src="images/cervantes.jpg" title="Cervantes"></a></li>
+		<li><a href="forums/114/"><img class="Tooltip" src="images/dampierre.jpg" title="Dampierre"></a></li>
+		<li><a href="forums/123/"><img class="Tooltip" src="images/devil-jin.jpg" title="Devil Jin"></a></li>
+		<li><a href="forums/113/"><img class="Tooltip" src="images/ezio-auditore.jpg" title="Ezio Auditore"></a></li>
+		<li><a href="forums/101/"><img class="Tooltip" src="images/hilde.jpg" title="Hilde"></a></li>
+		<li><a href="forums/97/"><img class="Tooltip" src="images/ivy.jpg" title="Ivy"></a></li>
+		<li><a href="forums/100/"><img class="Tooltip" src="images/leixia.jpg" title="Leixia"></a></li>
+		<li><a href="forums/102/"><img class="Tooltip" src="images/maxi.jpg" title="Maxi"></a></li>
+		<li><a href="forums/96/"><img class="Tooltip" src="images/mitsurugi.jpg" title="Mitsurugi"></a></li>
+		<li><a href="forums/99/"><img class="Tooltip" src="images/natsu.jpg" title="Natsu"></a></li>
+		<li><a href="forums/95/"><img class="Tooltip" src="images/nightmare.jpg" title="Nightmare"></a></li>
+		<li><a href="forums/91/"><img class="Tooltip" src="images/patroklos.jpg" title="Patroklos"></a></li>
+		<li><a href="forums/93/"><img class="Tooltip" src="images/pyrrha.jpg" title="Pyrrha"></a></li>
+		<li><a href="forums/122/"><img class="Tooltip" src="images/pyrrha-omega.jpg" title="Pyrrha Ω"></a></li>
+		<li><a href="forums/112/"><img class="Tooltip" src="images/raphael.jpg" title="Raphael"></a></li>
+		<li><a href="forums/94/"><img class="Tooltip" src="images/siegfried.jpg" title="Siegfried"></a></li>
+		<li><a href="forums/103/"><img class="Tooltip" src="images/tira.jpg" title="Tira"></a></li>
+		<li><a href="forums/110/"><img class="Tooltip" src="images/viola.jpg" title="Viola"></a></li>
+		<li><a href="forums/104/"><img class="Tooltip" src="images/voldo.jpg" title="Voldo"></a></li>
+		<li><a href="forums/119/"><img class="Tooltip" src="images/xiba.jpg" title="Xiba"></a></li>
+		<li><a href="forums/115/"><img class="Tooltip" src="images/yoshimitsu.jpg" title="Yoshimitsu"></a></li>
+		<li><a href="forums/98/"><img class="Tooltip" src="images/zwei.jpg" title="Z.W.E.I."></a></li>
+	</ul>
+    </div>
+</div>]]></template>
+    <template title="EWRblock_RawHyperText.css"><![CDATA[#charIcons { text-align: center; margin-bottom: 10px; }
+#charIcons ul { text-align: center; }
+#charIcons ul li { position: relative; display: inline-block; }
+#charIcons ul li img { width: 46px; height: 46px; }]]></template>
+  </templates>
+</block>

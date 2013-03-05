@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="cemzoo_sitemap" title="Sitemap for XenForo" version_string="1.2.0" version_id="120" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="option_template_sitemap_options"><![CDATA[<xen:checkboxunit label="{$preparedOption.title}" hint="{$preparedOption.hint}">
+	<xen:explain>{xen:raw $preparedOption.explain}</xen:explain>
+	
+	<xen:option label="{xen:phrase sitemap_include_forums}" name="{$fieldPrefix}[{$preparedOption.option_id}][forums]" selected="{$preparedOption.option_value.forums}">
+		<xen:hint>{xen:phrase sitemap_include_forums_hint}</xen:hint>
+	</xen:option>
+	<xen:option label="{xen:phrase sitemap_include_threads}" name="{$fieldPrefix}[{$preparedOption.option_id}][threads]" selected="{$preparedOption.option_value.threads}">
+		<xen:hint>{xen:phrase sitemap_include_threads_hint}</xen:hint>
+	</xen:option>
+	<xen:option label="{xen:phrase sitemap_include_members}" name="{$fieldPrefix}[{$preparedOption.option_id}][members]" selected="{$preparedOption.option_value.members}">
+		<xen:hint>{xen:phrase sitemap_include_members_hint}</xen:hint>
+	</xen:option>
+	<xen:option label="{xen:phrase sitemap_include_forumsPagination}" name="{$fieldPrefix}[{$preparedOption.option_id}][forumsPagination]" selected="{$preparedOption.option_value.forumsPagination}">
+		<xen:hint>{xen:phrase sitemap_include_forumsPagination_hint}</xen:hint>
+	</xen:option>
+	<xen:option label="{xen:phrase sitemap_include_threadsPagination}" name="{$fieldPrefix}[{$preparedOption.option_id}][threadsPagination]" selected="{$preparedOption.option_value.threadsPagination}">
+		<xen:hint>{xen:phrase sitemap_include_threadsPagination_hint}</xen:hint>
+	</xen:option>
+	
+	<xen:html>
+		<input type="hidden" name="{$listedFieldName}" value="{$preparedOption.option_id}" />
+		{xen:raw $editLink}
+	</xen:html>
+</xen:checkboxunit>]]></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners/>
+  <cron>
+    <entry entry_id="cemzoo_rebuild_sitemap" cron_class="XfAddOns_Sitemap_CronEntry_RebuildSitemap" cron_method="run" active="1"><![CDATA[{"day_type":"dom","dom":["-1"],"hours":["3"],"minutes":["0"]}]]></entry>
+  </cron>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="xenforo_sitemap" display_order="3000" debug_only="0"/>
+    <group group_id="xenforo_sitemap_urls" display_order="3010" debug_only="0"/>
+    <option option_id="xenforo_sitemap_directory" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>sitemap</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xenforo_sitemap" display_order="30"/>
+    </option>
+    <option option_id="xenforo_sitemap_enable" edit_format="template" data_type="array" can_backup="1">
+      <default_value>a:5:{s:6:"forums";s:1:"1";s:7:"members";s:1:"1";s:7:"threads";s:1:"1";s:16:"forumsPagination";s:1:"1";s:17:"threadsPagination";s:1:"1";}</default_value>
+      <edit_format_params>option_template_sitemap_options</edit_format_params>
+      <sub_options>forums
+members
+threads
+forumsPagination
+threadsPagination</sub_options>
+      <relation group_id="xenforo_sitemap" display_order="20"/>
+    </option>
+    <option option_id="xenforo_sitemap_max_urls" edit_format="textbox" data_type="positive_integer" can_backup="1">
+      <default_value>10000</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xenforo_sitemap" display_order="10"/>
+    </option>
+    <option option_id="xenforo_sitemap_ping" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xenforo_sitemap" display_order="40"/>
+    </option>
+    <option option_id="xfa_sitemap_log_creation" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xenforo_sitemap" display_order="100"/>
+    </option>
+    <option option_id="xfa_sitemap_urls" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>rows=30</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xenforo_sitemap_urls" display_order="10"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="cron_entry_cemzoo_rebuild_sitemap" version_id="10" version_string="1.0"><![CDATA[Rebuild Sitemap]]></phrase>
+    <phrase title="option_group_xenforo_sitemap" version_id="10" version_string="1.0"><![CDATA[Sitemap for XenForo]]></phrase>
+    <phrase title="option_group_xenforo_sitemap_description" version_id="10" version_string="1.0"><![CDATA[Configure how to SiteMap for search engines is generated. Each night, a sitemap with all the URLs for forums, threads, and members may be generated. This sitemap can be used by search engine to find out content on your site. Only public links (visible as a guest) are generated in the sitemap.]]></phrase>
+    <phrase title="option_group_xenforo_sitemap_urls" version_id="120" version_string="1.2.0"><![CDATA[Sitemap - Additional URLs]]></phrase>
+    <phrase title="option_group_xenforo_sitemap_urls_description" version_id="120" version_string="1.2.0"><![CDATA[Additional options for the sitemap]]></phrase>
+    <phrase title="option_xenforo_sitemap_directory" version_id="10" version_string="1.0"><![CDATA[Sitemap directory]]></phrase>
+    <phrase title="option_xenforo_sitemap_directory_explain" version_id="10" version_string="1.0"><![CDATA[The directory that will be used to store the sitemaps. Defaults to "sitemap". Whatever directory you put here, must exist in your XenForo installation and be writable (chmod 777)]]></phrase>
+    <phrase title="option_xenforo_sitemap_enable" version_id="10" version_string="1.0"><![CDATA[Enable sitemap for]]></phrase>
+    <phrase title="option_xenforo_sitemap_enable_explain" version_id="10" version_string="1.0"><![CDATA[]]></phrase>
+    <phrase title="option_xenforo_sitemap_max_urls" version_id="10" version_string="1.0"><![CDATA[Max URLs to include per sitemap]]></phrase>
+    <phrase title="option_xenforo_sitemap_max_urls_explain" version_id="10" version_string="1.0"><![CDATA[The sitemap will be split after this amount of URLs. The maximum number that you can have here is 50,000, a number of 10,000 is suggested]]></phrase>
+    <phrase title="option_xenforo_sitemap_ping" version_id="10" version_string="1.0"><![CDATA[Ping Google and Bing after the sitemap is generated]]></phrase>
+    <phrase title="option_xenforo_sitemap_ping_explain" version_id="10" version_string="1.0"><![CDATA[If you select this option, after the sitemap is generated Google and Bing will be informed of the new sitemap. This is done by pinging a special service with the sitemap URL.]]></phrase>
+    <phrase title="option_xfa_sitemap_log_creation" version_id="111" version_string="1.1.1"><![CDATA[Log sitemap creation]]></phrase>
+    <phrase title="option_xfa_sitemap_log_creation_explain" version_id="111" version_string="1.1.1"><![CDATA[If true, after the sitemap is created, an informative message will be shown in the "error log". Keep this enabled so you can have a log of when the sitemap was generated.]]></phrase>
+    <phrase title="option_xfa_sitemap_urls" version_id="120" version_string="1.2.0"><![CDATA[Additional URLs to include]]></phrase>
+    <phrase title="option_xfa_sitemap_urls_explain" version_id="120" version_string="1.2.0"><![CDATA[Include the following URLS in your sitemap. Make sure that your URLs are absolute (e.g. http://mydomain.com/my_url). Put each URL in a new line.]]></phrase>
+    <phrase title="sitemap_include_forums" version_id="10" version_string="1.0"><![CDATA[Include forums]]></phrase>
+    <phrase title="sitemap_include_forumsPagination" version_id="110" version_string="1.1.0"><![CDATA[Include all pages in a forum]]></phrase>
+    <phrase title="sitemap_include_forumsPagination_hint" version_id="110" version_string="1.1.0"><![CDATA[If you select this option, every single page with threads will be included in the sitemap. Else, only the main forum URL will be.]]></phrase>
+    <phrase title="sitemap_include_forums_hint" version_id="10" version_string="1.0"><![CDATA[If you select this option, the URLs for the forums will be included in the sitemap]]></phrase>
+    <phrase title="sitemap_include_members" version_id="10" version_string="1.0"><![CDATA[Include members]]></phrase>
+    <phrase title="sitemap_include_members_hint" version_id="10" version_string="1.0"><![CDATA[If you select this option, the URLs for the members' profile pages will be included in the sitemap]]></phrase>
+    <phrase title="sitemap_include_threads" version_id="10" version_string="1.0"><![CDATA[Include threads]]></phrase>
+    <phrase title="sitemap_include_threadsPagination" version_id="110" version_string="1.1.0"><![CDATA[Include all pages in a thread]]></phrase>
+    <phrase title="sitemap_include_threadsPagination_hint" version_id="110" version_string="1.1.0"><![CDATA[If you select this option, every single page with posts will be included in the sitemap. Else, only the main thread URL will be.]]></phrase>
+    <phrase title="sitemap_include_threads_hint" version_id="10" version_string="1.0"><![CDATA[If you select this option, the URLs for the threads will be included in the sitemap]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <bb_code_media_sites/>
+</addon>

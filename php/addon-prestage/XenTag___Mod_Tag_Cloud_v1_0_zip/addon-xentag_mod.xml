@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="xentag_mod" title="XenTag Mod VietXF.OrG" version_string="1.0" version_id="30" url="http://www.raid101.com" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="template_create" execute_order="10" callback_class="XenTagMod_Listener_RepTemps" callback_method="templateCreate" active="1" description="Replace default templates"/>
+    <listener event_id="template_hook" execute_order="10" callback_class="XenTagMod_Listener_RepTemps" callback_method="template_hook" active="1" description="Change replacement for sidebar widget"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="xentag_mod" display_order="10000" debug_only="0"/>
+    <option option_id="xentag_mod_enable_main" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xentag_mod" display_order="1"/>
+    </option>
+    <option option_id="xentag_mod_enable_sidebar" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="xentag_mod" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_group_xentag_mod" version_id="10" version_string="1.0"><![CDATA[XenTag Mod by V.I.E.T.X.F]]></phrase>
+    <phrase title="option_group_xentag_mod_description" version_id="10" version_string="1.0"><![CDATA[Setting for XenTag Mod - Tag Cloud]]></phrase>
+    <phrase title="option_xentag_mod_enable_main" version_id="10" version_string="1.0"><![CDATA[Enable for Tags page]]></phrase>
+    <phrase title="option_xentag_mod_enable_main_explain" version_id="10" version_string="1.0"><![CDATA[Choose whether you want to enable the tag cloud for the tags page]]></phrase>
+    <phrase title="option_xentag_mod_enable_sidebar" version_id="10" version_string="1.0"><![CDATA[Enable for Sidebar]]></phrase>
+    <phrase title="option_xentag_mod_enable_sidebar_explain" version_id="10" version_string="1.0"><![CDATA[Choose whether you want to enable the tag cloud for the sidebar]]></phrase>
+    <phrase title="style_property_group_xentag_mod_master" version_id="10" version_string="1.0"><![CDATA[XenTag Mod]]></phrase>
+    <phrase title="style_property_group_xentag_mod_master_desc" version_id="10" version_string="1.0"><![CDATA[]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_1_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 1 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_1_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Size 1]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_2_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 2 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_2_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Size 2]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_3_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 3 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_3_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Size 3]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_4_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 4 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_4_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Size 4]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_5_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 5 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_main_size_5_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Size 5]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_1_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 1 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_1_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Size 1]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_2_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 2 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_2_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Size 2]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_3_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 3 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_3_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Size 3]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_4_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 4 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_4_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Size 4]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_5_description_master" version_id="10" version_string="1.0"><![CDATA[Size for level 5 tags]]></phrase>
+    <phrase title="style_property_xentag_mod_sidebar_size_5_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Size 5]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_height_description_master" version_id="10" version_string="1.0"><![CDATA[Height of the tag cloud]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_height_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Height]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_hicolor_description_master" version_id="10" version_string="1.0"><![CDATA[Highlight color when mouseover/hover over tags]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_hicolor_master" version_id="10" version_string="1.0"><![CDATA[Highlight Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tcolor2_description_master" version_id="10" version_string="1.0"><![CDATA[2nd Color. A gradient will be used between 1st color and 2nd color based on popularity.]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tcolor2_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Color 2]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tcolor_description_master" version_id="10" version_string="1.0"><![CDATA[1st Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tcolor_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tspeed_description_master" version_id="10" version_string="1.0"><![CDATA[Speed by which tags rotate]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_tspeed_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Speed]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_width_description_master" version_id="10" version_string="1.0"><![CDATA[Width of the tag cloud]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_main_width_master" version_id="10" version_string="1.0"><![CDATA[Tags Page - Width]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_height_description_master" version_id="10" version_string="1.0"><![CDATA[Height of the tag cloud]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_height_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Height]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_hicolor_description_master" version_id="10" version_string="1.0"><![CDATA[Highlight color when mouseover/hover over tags]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_hicolor_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Highlight Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tcolor2_description_master" version_id="10" version_string="1.0"><![CDATA[2nd Color. A gradient will be used between 1st color and 2nd color based on popularity.]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tcolor2_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Color 2]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tcolor_description_master" version_id="10" version_string="1.0"><![CDATA[1st Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tcolor_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Color]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tspeed_description_master" version_id="10" version_string="1.0"><![CDATA[Speed by which tags rotate]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_tspeed_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Rotation Speed]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_width_description_master" version_id="10" version_string="1.0"><![CDATA[Width of the tag cloud]]></phrase>
+    <phrase title="style_property_xentag_mod_tagcloud_sidebar_width_master" version_id="10" version_string="1.0"><![CDATA[Sidebar - Width]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties>
+    <property property_name="xentag_mod_tagcloud_main_height" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Height" description="Height of the tag cloud" css_components="" scalar_type="number" scalar_parameters="" display_order="1" sub_group="Tags Page"><![CDATA[800]]></property>
+    <property property_name="xentag_mod_tagcloud_main_width" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Width" description="Width of the tag cloud" css_components="" scalar_type="number" scalar_parameters="" display_order="10" sub_group="Tags Page"><![CDATA[100%]]></property>
+    <property property_name="xentag_mod_tagcloud_main_tcolor" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Color" description="1st Color" css_components="" scalar_type="color" scalar_parameters="" display_order="20" sub_group="Tags Page"><![CDATA[#000000]]></property>
+    <property property_name="xentag_mod_tagcloud_main_tcolor2" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Color 2" description="2nd Color. A gradient will be used between 1st color and 2nd color based on popularity." css_components="" scalar_type="color" scalar_parameters="" display_order="30" sub_group="Tags Page"><![CDATA[#1061B3]]></property>
+    <property property_name="xentag_mod_tagcloud_main_hicolor" property_type="scalar" definition="1" group_name="xentag_mod" title="Highlight Color" description="Highlight color when mouseover/hover over tags" css_components="" scalar_type="color" scalar_parameters="" display_order="40" sub_group="Tags Page"><![CDATA[#FF0000]]></property>
+    <property property_name="xentag_mod_tagcloud_main_tspeed" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Speed" description="Speed by which tags rotate" css_components="" scalar_type="number" scalar_parameters="" display_order="50" sub_group="Tags Page"><![CDATA[100]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_height" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Height" description="Height of the tag cloud" css_components="" scalar_type="number" scalar_parameters="" display_order="301" sub_group="Sidebar"><![CDATA[240]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_width" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Width" description="Width of the tag cloud" css_components="" scalar_type="number" scalar_parameters="" display_order="310" sub_group="Sidebar"><![CDATA[100%]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_tcolor" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Color" description="1st Color" css_components="" scalar_type="color" scalar_parameters="" display_order="320" sub_group="Sidebar"><![CDATA[#000000]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_tcolor2" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Color 2" description="2nd Color. A gradient will be used between 1st color and 2nd color based on popularity." css_components="" scalar_type="color" scalar_parameters="" display_order="330" sub_group="Sidebar"><![CDATA[#1061B3]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_hicolor" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Highlight Color" description="Highlight color when mouseover/hover over tags" css_components="" scalar_type="color" scalar_parameters="" display_order="340" sub_group="Sidebar"><![CDATA[#FF0000]]></property>
+    <property property_name="xentag_mod_tagcloud_sidebar_tspeed" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Rotation Speed" description="Speed by which tags rotate" css_components="" scalar_type="number" scalar_parameters="" display_order="350" sub_group="Sidebar"><![CDATA[100]]></property>
+    <property property_name="xentag_mod_main_size_1" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Size 1" description="Size for level 1 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="201" sub_group="Tags Page Sizes"><![CDATA[2]]></property>
+    <property property_name="xentag_mod_main_size_2" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Size 2" description="Size for level 2 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="210" sub_group="Tags Page Sizes"><![CDATA[3.5]]></property>
+    <property property_name="xentag_mod_main_size_3" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Size 3" description="Size for level 3 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="220" sub_group="Tags Page Sizes"><![CDATA[5]]></property>
+    <property property_name="xentag_mod_main_size_4" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Size 4" description="Size for level 4 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="230" sub_group="Tags Page Sizes"><![CDATA[7]]></property>
+    <property property_name="xentag_mod_main_size_5" property_type="scalar" definition="1" group_name="xentag_mod" title="Tags Page - Size 5" description="Size for level 5 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="240" sub_group="Tags Page Sizes"><![CDATA[9]]></property>
+    <property property_name="xentag_mod_sidebar_size_1" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Size 1" description="Size for level 1 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="401" sub_group="Sidebar Sizes"><![CDATA[7]]></property>
+    <property property_name="xentag_mod_sidebar_size_2" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Size 2" description="Size for level 2 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="410" sub_group="Sidebar Sizes"><![CDATA[9]]></property>
+    <property property_name="xentag_mod_sidebar_size_3" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Size 3" description="Size for level 3 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="420" sub_group="Sidebar Sizes"><![CDATA[11]]></property>
+    <property property_name="xentag_mod_sidebar_size_4" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Size 4" description="Size for level 4 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="430" sub_group="Sidebar Sizes"><![CDATA[13]]></property>
+    <property property_name="xentag_mod_sidebar_size_5" property_type="scalar" definition="1" group_name="xentag_mod" title="Sidebar - Size 5" description="Size for level 5 tags" css_components="" scalar_type="number" scalar_parameters="" display_order="440" sub_group="Sidebar Sizes"><![CDATA[15]]></property>
+    <group group_name="xentag_mod" display_order="10000">
+      <title>XenTag Mod</title>
+      <description></description>
+    </group>
+  </style_properties>
+  <templates>
+    <template title="xentag_sidebar_cloud_mod" version_id="10" version_string="1.0"><![CDATA[<xen:if hascontent="true">
+	<xen:require css="tinhte_xentag.css" />
+
+	<div class="section Tinhte_XenTag_SidebarCloud Tinhte_XenTag_TagCloud">
+		<div class="secondaryContent">
+			<h3><a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}}">{xen:phrase tinhte_xentag_tag_cloud}</a></h3>
+			<xen:contentcheck>
+				<div id="flashcontent">This will be shown to users with no Flash or Javascript.</div>
+				<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+				<script type="text/javascript">
+					var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_sidebar_width}", "{xen:property xentag_mod_tagcloud_sidebar_height}", "7", "#ffffff");
+					var tcolor = "{xen:property xentag_mod_tagcloud_sidebar_tcolor}";
+					tcolor = tcolor.replace("#","0x");
+					so.addVariable("tcolor", tcolor);
+					var tcolor2 = "{xen:property xentag_mod_tagcloud_sidebar_tcolor2}";
+					tcolor2 = tcolor2.replace("#","0x");
+					so.addVariable("tcolor2", tcolor2);
+					var hicolor = "{xen:property xentag_mod_tagcloud_sidebar_hicolor}";
+					hicolor = hicolor.replace("#","0x");
+					so.addVariable("hicolor", hicolor);
+					so.addVariable("mode", "tags");
+					so.addVariable("distr", "true");
+					so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_sidebar_tspeed}");
+					so.addVariable("tagcloud", "<tags><xen:hook name="xentag_tag_cloud_item_mod" params="{xen:array 'max={$widget.options.limit}'}"><a href='{TAG_LINK}' style='font-size: {TAG_LEVEL}'>{TAG_TEXT}</a></xen:hook></tags>");
+					so.write("flashcontent");
+				</script>
+			</xen:contentcheck>	
+		</div>
+	</div>
+</xen:if>]]></template>
+    <template title="xentag_tag_list_mod" version_id="10" version_string="1.0"><![CDATA[<xen:require css="tinhte_xentag.css" />
+<xen:require js="js/Tinhte/XenTag/frontend.js" />
+
+<xen:title>{xen:phrase tinhte_xentag_tags}</xen:title>
+<xen:description>
+	{xen:phrase tinhte_xentag_these_are_x_most_used_tags, 'count={xen:count $tags}'}
+</xen:description>
+
+<xen:container var="$head.canonical">
+	<link rel="canonical" href="{xen:link 'canonical:{xen:helper Tinhte_XenTag_getOption, routePrefix}'}" /></xen:container>
+
+<xen:container var="$canSearch">0</xen:container>
+
+<fieldset>
+	<ul class="Tinhte_XenTag_TagCloud sectionMain">
+		<div id="flashcontentbig">This will be shown to users with no Flash or Javascript.</div>
+	<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+            <script type="text/javascript">
+		var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_main_width}", "{xen:property xentag_mod_tagcloud_main_height}", "7", "#ffffff");
+		so.addParam("wmode", "transparent");
+var tcolor = "{xen:property xentag_mod_tagcloud_main_tcolor}";
+tcolor = tcolor.replace("#","0x");
+		so.addVariable("tcolor", tcolor);
+var tcolor2 = "{xen:property xentag_mod_tagcloud_main_tcolor2}";
+tcolor2 = tcolor2.replace("#","0x");
+		so.addVariable("tcolor2", tcolor2);
+var hicolor = "{xen:property xentag_mod_tagcloud_main_hicolor}";
+hicolor = hicolor.replace("#","0x");
+		so.addVariable("hicolor", hicolor);
+		so.addVariable("mode", "tags");
+		so.addVariable("distr", "true");
+		so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_main_tspeed}");
+		so.addVariable("tagcloud", "<tags><xen:foreach loop="$tags" value="$tag"><a href='{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}, $tag}' style='font-size: <xen:if is="{$tag.cloudLevel}==1">{xen:property xentag_mod_main_size_1}<xen:elseif is="{$tag.cloudLevel}==2" />{xen:property xentag_mod_main_size_2}<xen:elseif is="{$tag.cloudLevel}==3" />{xen:property xentag_mod_main_size_3}<xen:elseif is="{$tag.cloudLevel}==4" />{xen:property xentag_mod_main_size_4}<xen:elseif is="{$tag.cloudLevel}==5" />{xen:property xentag_mod_main_size_5}</xen:if>'>{$tag.tag_text}</a></xen:foreach></tags>");
+		so.write("flashcontentbig");
+	</script>
+</fieldset>
+
+<form action="{xen:link '{xen:helper Tinhte_XenTag_getOption, routePrefix}/search'}" method="post" class="xenForm">
+	<h3 class="textHeading">{xen:phrase tinhte_xentag_search_by_tag}</h3>
+
+	<dl class="ctrlUnit">
+		<dt><label for="ctrl_tinhte_xentag_tags">{xen:phrase tinhte_xentag_tags}:</label></dt>
+		<dd>
+			<input type="text"
+				name="tinhte_xentag_tags_text"
+				value=""
+				id="ctrl_tinhte_xentag_tags"
+				class="textCtrl AutoComplete AcSingle"
+				data-acUrl="{xen:link '{xen:helper Tinhte_XenTag_getOption, routePrefix}/find'}"
+				data-autoSubmit="yes"
+				/>
+			<input type="hidden" name="tinhte_xentag_included" value="1" />
+		</dd>
+	</dl>
+
+	<dl class="ctrlUnit submitUnit">
+		<dt></dt>
+		<dd><input type="submit" value="{xen:phrase search}" class="button primary" /></dd>
+	</dl>
+
+	<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+</form>
+
+<xen:include template="tinhte_xentag_copyright" />]]></template>
+    <template title="xentag_widget_cloud_mod" version_id="10" version_string="1.0"><![CDATA[<xen:if hascontent="true">
+    <xen:require css="tinhte_xentag.css" />
+    
+    <div class="Tinhte_XenTag_TagCloud">
+        <xen:contentcheck>
+			<div id="flashcontent">This will be shown to users with no Flash or Javascript.</div>
+			<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+            <script type="text/javascript">
+				var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_sidebar_width}", "{xen:property xentag_mod_tagcloud_sidebar_height}", "7", "#ffffff");
+				var tcolor = "{xen:property xentag_mod_tagcloud_sidebar_tcolor}";
+				tcolor = tcolor.replace("#","0x");
+				so.addVariable("tcolor", tcolor);
+				var tcolor2 = "{xen:property xentag_mod_tagcloud_sidebar_tcolor2}";
+				tcolor2 = tcolor2.replace("#","0x");
+				so.addVariable("tcolor2", tcolor2);
+				var hicolor = "{xen:property xentag_mod_tagcloud_sidebar_hicolor}";
+				hicolor = hicolor.replace("#","0x");
+				so.addVariable("hicolor", hicolor);
+				so.addVariable("mode", "tags");
+				so.addVariable("distr", "true");
+				so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_sidebar_tspeed}");
+				so.addVariable("tagcloud", "<tags><xen:hook name="xentag_tag_cloud_item_mod" params="{xen:array 'max={$widget.options.limit}'}"><a href='{TAG_LINK}' style='font-size: {TAG_LEVEL}'>{TAG_TEXT}</a></xen:hook></tags>");
+				so.write("flashcontent");
+			</script>
+		</xen:contentcheck>		
+    </div>
+</xen:if>]]></template>
+  </templates>
+  <bb_code_media_sites/>
+  <user_fields/>
+  <thread_fields/>
+  <template_modifications>
+    <modification title="Replace Sidebar" template_title="tinhte_xentag_sidebar_cloud" execute_order="10" modification_type="str_replace" callback_class="" callback_method="" description="Replace Sidebar" version_id="10" version_string="1.0" active="1">
+      <search_value><![CDATA[<xen:if hascontent="true">
+	<xen:require css="tinhte_xentag.css" />
+
+	<div class="section Tinhte_XenTag_SidebarCloud Tinhte_XenTag_TagCloud">
+		<div class="secondaryContent">
+			<h3><a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}}">{xen:phrase tinhte_xentag_tag_cloud}</a></h3>
+			<ul>
+				<xen:contentcheck>
+					<xen:hook name="tinhte_xentag_tag_cloud_item" params="{xen:array 'max={xen:helper Tinhte_XenTag_getOption, cloudMax}'}">
+						<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{TAG_LEVEL}"><a href="{TAG_LINK}">{TAG_TEXT}</a></li>
+					</xen:hook>
+				</xen:contentcheck>
+			</ul>
+		</div>
+	</div>
+</xen:if>]]></search_value>
+      <replace_value><![CDATA[<xen:if is="{$xenOptions.xentag_mod_enable_sidebar}">
+	<xen:if hascontent="true">
+		<xen:require css="tinhte_xentag.css" />
+
+		<div class="section Tinhte_XenTag_SidebarCloud Tinhte_XenTag_TagCloud">
+			<div class="secondaryContent">
+				<h3><a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}}">{xen:phrase tinhte_xentag_tag_cloud}</a></h3>
+				<xen:contentcheck>
+					<div id="flashcontent_s">This will be shown to users with no Flash or Javascript.</div>
+					<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+					<script type="text/javascript">
+						var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_sidebar_width}", "{xen:property xentag_mod_tagcloud_sidebar_height}", "7", "#ffffff");
+						var tcolor = "{xen:property xentag_mod_tagcloud_sidebar_tcolor}";
+						tcolor = tcolor.replace("#","0x");
+						so.addVariable("tcolor", tcolor);
+						var tcolor2 = "{xen:property xentag_mod_tagcloud_sidebar_tcolor2}";
+						tcolor2 = tcolor2.replace("#","0x");
+						so.addVariable("tcolor2", tcolor2);
+						var hicolor = "{xen:property xentag_mod_tagcloud_sidebar_hicolor}";
+						hicolor = hicolor.replace("#","0x");
+						so.addVariable("hicolor", hicolor);
+						so.addVariable("mode", "tags");
+						so.addVariable("distr", "true");
+						so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_sidebar_tspeed}");
+						so.addVariable("tagcloud", "<tags><xen:hook name="xentag_tag_cloud_item_mod" params="{xen:array 'max={$widget.options.limit}'}"><a href='{TAG_LINK}' style='font-size: {TAG_LEVEL}'>{TAG_TEXT}</a></xen:hook></tags>");
+						so.write("flashcontent_s");
+					</script>
+				</xen:contentcheck>	
+			</div>
+		</div>
+	</xen:if>
+<xen:else />
+	<xen:if hascontent="true">
+		<xen:require css="tinhte_xentag.css" />
+
+		<div class="section Tinhte_XenTag_SidebarCloud Tinhte_XenTag_TagCloud">
+			<div class="secondaryContent">
+				<h3><a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}}">{xen:phrase tinhte_xentag_tag_cloud}</a></h3>
+				<ul>
+					<xen:contentcheck>
+						<xen:hook name="tinhte_xentag_tag_cloud_item" params="{xen:array 'max={xen:helper Tinhte_XenTag_getOption, cloudMax}'}">
+							<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{TAG_LEVEL}"><a href="{TAG_LINK}">{TAG_TEXT}</a></li>
+						</xen:hook>
+					</xen:contentcheck>
+				</ul>
+			</div>
+		</div>
+	</xen:if>
+</xen:if>]]></replace_value>
+    </modification>
+    <modification title="Replace Tag Page" template_title="tinhte_xentag_tag_list" execute_order="10" modification_type="str_replace" callback_class="" callback_method="" description="Replace Tag Page" version_id="10" version_string="1.0" active="1">
+      <search_value><![CDATA[<fieldset>
+	<ul class="Tinhte_XenTag_TagCloud sectionMain" data-toggler="{xen:phrase tinhte_xentag_sort}">
+		<xen:foreach loop="$tags" value="$tag">
+			<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{$tag.cloudLevel}">
+				<a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}, $tag}">{$tag.tag_text}</a>
+			</li>
+		</xen:foreach>
+	</ul>
+</fieldset>]]></search_value>
+      <replace_value><![CDATA[<xen:if is="{$xenOptions.xentag_mod_enable_sidebar}">
+	<fieldset>
+		<ul class="Tinhte_XenTag_TagCloud sectionMain">
+			<div id="flashcontentbig">This will be shown to users with no Flash or Javascript.</div>
+		<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+				<script type="text/javascript">
+			var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_main_width}", "{xen:property xentag_mod_tagcloud_main_height}", "7", "#ffffff");
+			so.addParam("wmode", "transparent");
+	var tcolor = "{xen:property xentag_mod_tagcloud_main_tcolor}";
+	tcolor = tcolor.replace("#","0x");
+			so.addVariable("tcolor", tcolor);
+	var tcolor2 = "{xen:property xentag_mod_tagcloud_main_tcolor2}";
+	tcolor2 = tcolor2.replace("#","0x");
+			so.addVariable("tcolor2", tcolor2);
+	var hicolor = "{xen:property xentag_mod_tagcloud_main_hicolor}";
+	hicolor = hicolor.replace("#","0x");
+			so.addVariable("hicolor", hicolor);
+			so.addVariable("mode", "tags");
+			so.addVariable("distr", "true");
+			so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_main_tspeed}");
+			so.addVariable("tagcloud", "<tags><xen:foreach loop="$tags" value="$tag"><a href='{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}, $tag}' style='font-size: <xen:if is="{$tag.cloudLevel}==1">{xen:property xentag_mod_main_size_1}<xen:elseif is="{$tag.cloudLevel}==2" />{xen:property xentag_mod_main_size_2}<xen:elseif is="{$tag.cloudLevel}==3" />{xen:property xentag_mod_main_size_3}<xen:elseif is="{$tag.cloudLevel}==4" />{xen:property xentag_mod_main_size_4}<xen:elseif is="{$tag.cloudLevel}==5" />{xen:property xentag_mod_main_size_5}</xen:if>'>{$tag.tag_text}</a></xen:foreach></tags>");
+			so.write("flashcontentbig");
+		</script>
+	</fieldset>
+<xen:else />
+	<fieldset>
+		<ul class="Tinhte_XenTag_TagCloud sectionMain" data-toggler="{xen:phrase tinhte_xentag_sort}">
+			<xen:foreach loop="$tags" value="$tag">
+				<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{$tag.cloudLevel}">
+					<a href="{xen:link {xen:helper Tinhte_XenTag_getOption, routePrefix}, $tag}">{$tag.tag_text}</a>
+				</li>
+			</xen:foreach>
+		</ul>
+	</fieldset>
+</xen:if>]]></replace_value>
+    </modification>
+    <modification title="Replace Widget" template_title="tinhte_xentag_widget_cloud" execute_order="10" modification_type="str_replace" callback_class="" callback_method="" description="Replace Widget" version_id="10" version_string="1.0" active="1">
+      <search_value><![CDATA[<xen:if hascontent="true">
+    <xen:require css="tinhte_xentag.css" />
+    
+    <div class="Tinhte_XenTag_TagCloud">
+        <xen:contentcheck>
+            <xen:hook name="tinhte_xentag_tag_cloud_item" params="{xen:array 'max={$widget.options.limit}'}">
+            	<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{TAG_LEVEL}"><a href="{TAG_LINK}">{TAG_TEXT}</a></li>
+            </xen:hook>
+        </xen:contentcheck>
+    </div>
+</xen:if>]]></search_value>
+      <replace_value><![CDATA[<xen:if is="{$xenOptions.xentag_mod_enable_sidebar}">
+	<xen:if hascontent="true">
+		<xen:require css="tinhte_xentag.css" />
+		
+		<div class="Tinhte_XenTag_TagCloud">
+			<xen:contentcheck>
+				<div id="flashcontent">This will be shown to users with no Flash or Javascript.</div>
+				<script type="text/javascript" src="js/XenTagMod/swfobject.js"></script>
+				<script type="text/javascript">
+					var so = new SWFObject("js/XenTagMod/tagcloud.swf", "tagcloud", "{xen:property xentag_mod_tagcloud_sidebar_width}", "{xen:property xentag_mod_tagcloud_sidebar_height}", "7", "#ffffff");
+					var tcolor = "{xen:property xentag_mod_tagcloud_sidebar_tcolor}";
+					tcolor = tcolor.replace("#","0x");
+					so.addVariable("tcolor", tcolor);
+					var tcolor2 = "{xen:property xentag_mod_tagcloud_sidebar_tcolor2}";
+					tcolor2 = tcolor2.replace("#","0x");
+					so.addVariable("tcolor2", tcolor2);
+					var hicolor = "{xen:property xentag_mod_tagcloud_sidebar_hicolor}";
+					hicolor = hicolor.replace("#","0x");
+					so.addVariable("hicolor", hicolor);
+					so.addVariable("mode", "tags");
+					so.addVariable("distr", "true");
+					so.addVariable("tspeed", "{xen:property xentag_mod_tagcloud_sidebar_tspeed}");
+					so.addVariable("tagcloud", "<tags><xen:hook name="xentag_tag_cloud_item_mod" params="{xen:array 'max={$widget.options.limit}'}"><a href='{TAG_LINK}' style='font-size: {TAG_LEVEL}'>{TAG_TEXT}</a></xen:hook></tags>");
+					so.write("flashcontent");
+				</script>
+			</xen:contentcheck>		
+		</div>
+	</xen:if>
+<xen:else />
+	<xen:if hascontent="true">
+		<xen:require css="tinhte_xentag.css" />
+		
+		<div class="Tinhte_XenTag_TagCloud">
+			<xen:contentcheck>
+				<xen:hook name="tinhte_xentag_tag_cloud_item" params="{xen:array 'max={$widget.options.limit}'}">
+					<li class="Tinhte_XenTag_TagCloudTag Tinhte_XenTag_TagCloud_Level{TAG_LEVEL}"><a href="{TAG_LINK}">{TAG_TEXT}</a></li>
+				</xen:hook>
+			</xen:contentcheck>
+		</div>
+	</xen:if>
+</xen:if>]]></replace_value>
+    </modification>
+  </template_modifications>
+</addon>

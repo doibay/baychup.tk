@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="Twitter" title="Twitter Social Search" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 days">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="twitter_search" edit_format="textbox" data_type="string" display_order="1">
+      <option_value>#soulcalibur OR #soulcaliburv OR #8wayrun -RT</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Twitter Search Query</title>
+      <explain><![CDATA[Instructions on how to build complex search operators can be found <a href="https://dev.twitter.com/docs/using-search">here</a>.]]></explain>
+    </option>
+    <option option_id="twitter_height" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <option_value>190</option_value>
+      <edit_format_params>step=10</edit_format_params>
+      <sub_options></sub_options>
+      <title>Twitter Widget Height</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="twitter_features" edit_format="checkbox" data_type="array" display_order="3">
+      <option_value>a:5:{s:6:"scroll";s:1:"1";s:7:"avatars";s:1:"1";s:8:"hashtags";s:1:"1";s:10:"timestamps";s:1:"1";s:9:"toptweets";b:0;}</option_value>
+      <edit_format_params>scroll=Show Scroll Bar
+avatars=Show Avatars
+hashtags=Show Hashtags
+timestamps=Show Timestamps
+toptweets=Show Top Tweets</edit_format_params>
+      <sub_options>scroll
+avatars
+hashtags
+timestamps
+toptweets</sub_options>
+      <title>Widget Features</title>
+      <explain><![CDATA[Top Tweets are popular Tweets that have caught the attention of other Twitter users.]]></explain>
+    </option>
+  </options>
+  <phrases>
+    <phrase title="EWRblock_Twitter_feed"><![CDATA[Twitter Feed]]></phrase>
+    <phrase title="EWRblock_Twitter_join"><![CDATA[Join the conversation]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_Twitter"><![CDATA[<xen:require css="EWRblock_Twitter.css" />
+
+<div class="section">
+	<div class="secondaryContent" id="twitter">
+		<h3>{xen:phrase EWRblock_Twitter_feed}</h3>
+		<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+		<script>
+		new TWTR.Widget({
+			version: 2,
+			type: 'search',
+			search: '{xen:raw $option.search}',
+			interval: 6000,
+			width: 'auto',
+			height: {$option.height},
+			theme: {
+				shell: {
+					background: '{xen:property pageBackground}',
+					color: '{xen:property pageBackground}'
+				},
+				tweets: {
+					background: '{xen:property contentBackground}',
+					color: '{xen:property mutedTextColor}',
+					links: '{xen:property primaryMedium}'
+				}
+			},
+			features: {
+				scrollbar: {$option.features.scroll},
+				hashtags: {$option.features.hashtags},
+				timestamp: {$option.features.timestamps},
+				avatars: {$option.features.avatars},
+				toptweets: {$option.features.toptweets},
+				live: true,
+				loop: false,
+				behavior: 'all'
+			}
+		}).render().start();
+		</script>
+		<div class="twtr-link">
+			<span><a href="http://twitter.com/#search?q={$option.search}" target="_blank">{xen:phrase EWRblock_Twitter_join}</a></span>
+			<a href="http://twitter.com" target="_blank"><img src="http://widgets.twimg.com/i/widget-logo.png" alt="" /></a>
+		</div>
+	</div>
+</div>]]></template>
+    <template title="EWRblock_Twitter.css"><![CDATA[.twtr-widget { margin: -5px -5px 10px; }
+.twtr-widget .twtr-hd { display: none; }
+.twtr-widget .twtr-ft { display: none; }
+.twtr-link span { float: right; }
+
+#twitter { padding-bottom: 8px; }]]></template>
+  </templates>
+</block>

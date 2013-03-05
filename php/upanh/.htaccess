@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^up\.cdxd3\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.up\.cdxd3\.com$
+RewriteRule ^/?$ "http\:\/\/cdxd3\.com\/up" [R=301,L]
+

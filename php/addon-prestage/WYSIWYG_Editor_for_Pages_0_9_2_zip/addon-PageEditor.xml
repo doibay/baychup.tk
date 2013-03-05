@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="PageEditor" title="WYSIWYG Editor for Pages" version_string="0.9.2" version_id="3" url="" install_callback_class="PageEditor_Installer" install_callback_method="install" uninstall_callback_class="PageEditor_Installer" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="file_health_check" execute_order="10" callback_class="PageEditor_Listener" callback_method="file_health_check" active="1" description=""/>
+    <listener event_id="load_class_bb_code" execute_order="9999" callback_class="PageEditor_Listener" callback_method="load_class" active="1" description="This one need to be executed as late as possible (hence the 9999)."/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="PageEditor_Listener" callback_method="load_class" active="1" description=""/>
+    <listener event_id="load_class_datawriter" execute_order="10" callback_class="PageEditor_Listener" callback_method="load_class" active="1" description=""/>
+    <listener event_id="load_class_model" execute_order="10" callback_class="PageEditor_Listener" callback_method="load_class" active="1" description=""/>
+    <listener event_id="load_class_view" execute_order="10" callback_class="PageEditor_Listener" callback_method="load_class" active="1" description=""/>
+    <listener event_id="template_create" execute_order="10" callback_class="PageEditor_Listener" callback_method="template_create" active="1" description=""/>
+    <listener event_id="template_post_render" execute_order="10" callback_class="PageEditor_Listener" callback_method="template_post_render" active="1" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups/>
+  <permissions>
+    <permission_groups>
+      <permission_group permission_group_id="page"/>
+    </permission_groups>
+    <permissions>
+      <permission permission_group_id="page" permission_id="PageEditor_edit" permission_type="flag" default_value="unset" interface_group_id="PageEditor" display_order="9999"/>
+    </permissions>
+    <interface_groups>
+      <interface_group interface_group_id="PageEditor" display_order="9999"/>
+    </interface_groups>
+  </permissions>
+  <phrases>
+    <phrase title="permission_group_page" version_id="1" version_string="0.9"><![CDATA[Page Permissions]]></phrase>
+    <phrase title="permission_interface_PageEditor" version_id="1" version_string="0.9"><![CDATA[Page Editor Permissions]]></phrase>
+    <phrase title="permission_page_PageEditor_edit" version_id="1" version_string="0.9"><![CDATA[Edit page using WYSIWYG editor]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="pageeditor_edit_page_button" version_id="1" version_string="0.9"><![CDATA[<xen:if is="{$page.PageEditor_canEdit}">
+	<a href="{xen:link 'pages', $page, 'edit=1'}" class="callToAction">
+		<span>{xen:phrase edit_page}</span>
+	</a>
+</xen:if>]]></template>
+    <template title="pageeditor_page_edit" version_id="1" version_string="0.9"><![CDATA[<xen:title>{xen:phrase edit_page}: {$page.title}</xen:title>
+<xen:h1>{xen:phrase edit_page}</xen:h1>
+
+<xen:navigation>
+	<xen:breadcrumb source="$nodeBreadCrumbs" />
+	<xen:breadcrumb href="{xen:link pages, $page}">{$page.title}</xen:breadcrumb>
+</xen:navigation>
+
+<form action="{xen:link pages, $page, 'edit=1'}" method="post" class="xenForm AutoValidator" data-redirect="on">
+
+	<fieldset>
+		<dl class="ctrlUnit fullWidth surplusLabel">
+			<dt><label for="ctrl_message">&nbsp;</label></dt>
+			<dd>{xen:raw $editorTemplate}</dd>
+		</dl>
+	</fieldset>
+
+	<dl class="ctrlUnit submitUnit">
+		<dt></dt>
+		<dd>
+			<input type="submit" value="{xen:phrase save_changes}" accesskey="s" class="button primary" />
+			<xen:include template="attachment_upload_button" />
+		</dd>
+	</dl>
+
+	<xen:if is="{$attachmentParams}">
+		<dl class="ctrlUnit AttachedFilesUnit">
+			<dt><label for="ctrl_uploader">{xen:phrase attached_files}:</label></dt>
+			<dd><xen:include template="attachment_editor" /></dd>
+		</dl>
+	</xen:if>
+
+	<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+	<input type="hidden" name="template_id" value="{$template.template_id}" />
+</form>]]></template>
+  </templates>
+  <bb_code_media_sites/>
+</addon>

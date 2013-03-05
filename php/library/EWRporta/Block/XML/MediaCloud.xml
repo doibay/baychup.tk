@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="MediaCloud" title="XenMedio: Keyword Cloud" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="mediacloud_limit" edit_format="spinbox" data_type="unsigned_integer" display_order="1">
+      <option_value>50</option_value>
+      <edit_format_params>step=5</edit_format_params>
+      <sub_options></sub_options>
+      <title>Keyword Cloud Limit</title>
+      <explain><![CDATA[The maximum number of keywords to display on the keyword cloud.]]></explain>
+    </option>
+    <option option_id="mediacloud_mincloud" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <option_value>8</option_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <title>Minimum Font Size</title>
+      <explain><![CDATA[The minimum text size for keywords displayed in the keyword cloud.]]></explain>
+    </option>
+    <option option_id="mediacloud_maxcloud" edit_format="spinbox" data_type="unsigned_integer" display_order="3">
+      <option_value>18</option_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <title>Maximum Font Size</title>
+      <explain><![CDATA[The maximum text size for keywords displayed in the keyword cloud.]]></explain>
+    </option>
+    <option option_id="mediacloud_animated" edit_format="onoff" data_type="boolean" display_order="4">
+      <option_value>1</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Enable Animated Cloud</title>
+      <explain><![CDATA[Disabling the animated keyword cloud will default to a static cloud.]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_MediaCloud"><![CDATA[<xen:require css="EWRmedio.css" />
+
+<xen:include template="EWRmedio_Sidebar_Cloud">
+	<xen:map from="$MediaCloud" to="$sidebar" />
+</xen:include>]]></template>
+  </templates>
+</block>

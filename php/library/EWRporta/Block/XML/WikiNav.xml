@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="WikiNav" title="XenCarta: Wiki Navigation" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 days">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="wikinav_links" edit_format="onoff" data_type="boolean" display_order="1">
+      <option_value>1</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Enable Quick Links</title>
+      <explain><![CDATA[If selected, the block will display your wiki quick link index.]]></explain>
+    </option>
+    <option option_id="wikinav_search" edit_format="onoff" data_type="boolean" display_order="1">
+      <option_value>1</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Show Wiki Search Bar</title>
+      <explain><![CDATA[If selected, a search bar will be added at the bottom of the block.]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_WikiNav"><![CDATA[<xen:require css="EWRcarta.css" />
+<xen:require css="member_list.css" />
+
+<div class="section wikiNav">
+	<div class="secondaryContent" id="wikiNav">
+		<h3><a href="{xen:link 'full:wiki'}">{$WikiNav.index.page_name}</a></h3>
+
+		<xen:if hascontent="true">
+		<ul>
+			<xen:contentcheck>
+			<xen:foreach loop="$WikiNav.pages" value="$page">
+				<li>
+					{xen:raw $page.page_indent}<a href="{xen:link 'full:wiki/{$page.page_slug}/'}">{$page.page_name}</a>
+				</li>
+			</xen:foreach>
+			</xen:contentcheck>
+		</ul>
+		</xen:if>
+
+		<xen:if is="{$option.search}">
+		<div style="margin-top: 10px;" class="findMember">
+			<form action="{xen:link 'search/search'}" method="post" class="AutoValidator" data-optInOut="optIn" data-redirect="true">
+				<input type="search" name="keywords" class="textCtrl" placeholder="{xen:phrase search_wiki}..." results="0" title="{xen:phrase enter_your_search_and_hit_enter}" id="searchBar_keywords" value="{$search.keywords}" />
+				<input type="hidden" name="type" value="wiki" />
+				<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+			</form>
+		</div>
+		</xen:if>
+	</div>
+</div>]]></template>
+  </templates>
+</block>

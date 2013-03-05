@@ -1,0 +1,38 @@
+a, a:link, a:visited {
+	color: #217BD5;
+}
+
+.fan_box .full_widget {
+	background: transparent;
+	border: 0px;
+	color: #EBEBEB;
+}
+
+.fan_box .connect_top,
+.fan_box .full_widget .connect_top {
+	background: transparent;
+	border-bottom: 1px solid #666666;
+	margin: 0px 10px 5px 0px;
+	padding: 0px 0px 4px 0px;
+}
+
+.fan_box .connect_action .name {
+	font-size: 12px;
+	line-height: 12px;
+}
+
+.fan_box .connections {
+	border: 0px;
+	min-height: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+.fan_box .connections .connections_grid {
+	padding-top: 6px;
+}
+
+.fan_box .connections_grid .grid_item {
+	padding: 0px;
+	margin: 0px 9px 5px 0px;
+}

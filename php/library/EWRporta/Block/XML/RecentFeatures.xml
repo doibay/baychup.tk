@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="RecentFeatures" title="Recent Feature Slider" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="recentfeatures_filename" edit_format="textbox" data_type="string" display_order="1">
+      <option_value>slide.jpg</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Slide Filename</title>
+      <explain><![CDATA[The accordion will search for this image attached to articles.]]></explain>
+    </option>
+    <option option_id="recentfeatures_limit" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <option_value>7</option_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <title>Slide Limit</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="recentfeatures_height" edit_format="spinbox" data_type="unsigned_integer" display_order="3" validation_class="EWRporta_Block_Option_RecentFeatures" validation_method="verifyHeight">
+      <option_value>250</option_value>
+      <edit_format_params>step=50</edit_format_params>
+      <sub_options></sub_options>
+      <title>Slide Height</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="recentfeatures_width" edit_format="spinbox" data_type="unsigned_integer" display_order="4" validation_class="EWRporta_Block_Option_RecentFeatures" validation_method="verifyWidth">
+      <option_value>188</option_value>
+      <edit_format_params>step=10</edit_format_params>
+      <sub_options></sub_options>
+      <title>Info Box Width</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="recentfeatures_position" edit_format="select" data_type="string" display_order="6">
+      <option_value>right</option_value>
+      <edit_format_params>left=Left
+right=Right</edit_format_params>
+      <sub_options></sub_options>
+      <title>Slide Position</title>
+      <explain><![CDATA[The position of the slide container will be on this side of the block.]]></explain>
+    </option>
+    <option option_id="recentfeatures_trimtitle" edit_format="spinbox" data_type="unsigned_integer" display_order="7">
+      <option_value>30</option_value>
+      <edit_format_params>step=5</edit_format_params>
+      <sub_options></sub_options>
+      <title>Max Length of Titles</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="recentfeatures_trimexcerpt" edit_format="spinbox" data_type="unsigned_integer" display_order="8">
+      <option_value>250</option_value>
+      <edit_format_params>step=10</edit_format_params>
+      <sub_options></sub_options>
+      <title>Max Length of Story</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_RecentFeatures"><![CDATA[<xen:require css="EWRblock_RecentFeatures.css" />
+
+<div class="section sectionMain" id="recentFeatures">
+	<div class="recentFeatures {$option.position}Slider">
+
+		<xen:require js="js/8wayrun/EWRporta_jqui.js" />
+
+		<script type="text/javascript">
+		jQuery(document).ready(function() {
+			$("#recentFeatures").jQtabs({fx:{ opacity: 'toggle' }}).jQtabs("rotate", 5000, true);
+
+			$("#recentFeatures").hover(function() {
+				$("#recentFeatures").jQtabs("rotate", 0, true);
+			}, function() {
+				$("#recentFeatures").jQtabs("rotate", 5000, true);
+			});
+		});
+		</script>
+
+		<div class="heightFix">
+		<xen:foreach loop="$RecentFeatures" value="$news" i="$i">
+			<div id="fragment-{$i}" class="ui-tabs-panel {xen:if '{$i} != 1', 'ui-tabs-hide'}" style="background-image: url('{xen:link attachments, $news}');">
+				<a href="{xen:link threads, $news}">
+					<div class="heightFix">
+						<div class="summary">
+							<div class="title">{xen:helper wordtrim, $news.title, {$option.trimtitle}}</div>
+							<div class="excerpt">{xen:helper wordtrim, $news.messageText, {$option.trimexcerpt}}</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</xen:foreach>
+		</div>
+
+		<ul class="ui-tabs-nav {$option.position}Slider">
+			<xen:foreach loop="$RecentFeatures" value="$news" i="$i">
+				<li id="nav-fragment-{$i}" class="ui-tabs-nav-item {xen:if '{$i} == 1', 'ui-tabs-selected'}">
+					<a href="#fragment-{$i}" class="Tooltip" title="{$news.title}"><div>{$i}</div></a>
+				</li>
+			</xen:foreach>
+		</ul>
+
+	</div>
+</div>]]></template>
+    <template title="EWRblock_RecentFeatures.css"><![CDATA[#recentFeatures { position: relative; }
+#recentFeatures .recentFeatures { border: 1px solid #333; background-color: #000; }
+
+#recentFeatures .leftSlider .ui-tabs-panel { background-position: left top; }
+#recentFeatures .leftSlider .ui-tabs-panel .summary { border-left: 1px solid #333; float: right; }
+#recentFeatures .leftSlider .ui-tabs-nav { right: 24px; }
+#recentFeatures .leftSlider .ui-tabs-nav-item { float: right; }
+
+#recentFeatures .rightSlider .ui-tabs-panel { background-position: right top; }
+#recentFeatures .rightSlider .ui-tabs-panel .summary { border-right: 1px solid #333; float: left; }
+#recentFeatures .rightSlider .ui-tabs-nav { left: 24px; }
+#recentFeatures .rightSlider .ui-tabs-nav-item { float: left; }
+
+#recentFeatures .ui-tabs-panel { background-repeat: no-repeat; }
+#recentFeatures .ui-tabs-panel a { text-decoration: none !important; color: #EEE; }
+#recentFeatures .ui-tabs-panel .summary { background-color: rgba(0,0,0,0.5); }
+#recentFeatures .ui-tabs-panel .summary .title { padding: 20px 20px 10px; font-size: 18px; }
+#recentFeatures .ui-tabs-panel .summary .excerpt { padding: 0px 20px 20px; font-size: 11px; text-align: justify; }
+
+#recentFeatures .ui-tabs-nav { list-style: none; position: absolute; bottom: 22px; }
+#recentFeatures .ui-tabs-nav-item { background-color: rgba(0,0,0,0.5); border: 1px solid #333; height: 15px; width: 15px; margin: 3px; }
+#recentFeatures .ui-tabs-nav-item a div { visibility: hidden; }
+#recentFeatures .ui-tabs-nav-item:hover { background-color: #666; }
+
+#recentFeatures .ui-tabs-selected { background-color: #333; }
+#recentFeatures .ui-tabs-hide { display: none; }
+
+/*---------------------------------------*/
+/* DO NOT TOUCH ANYTHING BELOW THIS LINE */
+/*---------------------------------------*/
+
+#recentFeatures .heightFix, #recentFeatures .summary { height: 250px; } /*HEIGHT*/
+#recentFeatures .summary { width: 188px; } /*WIDTH*/]]></template>
+  </templates>
+</block>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="MediaRecent" title="XenMedio: RecentMedia" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="mediarecent_limit" edit_format="spinbox" data_type="unsigned_integer" display_order="1">
+      <option_value>4</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Recent Media Limit</title>
+      <explain><![CDATA[The maximum number of media to display on the recent media block.]]></explain>
+    </option>
+    <option option_id="mediarecent_search" edit_format="onoff" data_type="boolean" display_order="2">
+      <option_value>1</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Show Media Search Bar</title>
+      <explain><![CDATA[If selected, a search bar will be added at the bottom of the block.]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_MediaRecent"><![CDATA[<xen:require css="EWRmedio.css" />
+<xen:require css="member_list.css" />
+
+<div class="section">
+	<div class="secondaryContent mediaSmall" id="mediaRecent">
+		<h3><a href="{xen:link media}">{xen:phrase recent_media}</a></h3>
+
+		<xen:if hascontent="true">
+		<ul>
+			<xen:contentcheck>
+			<xen:foreach loop="$MediaRecent" value="$media">
+				<li>
+					<div class="mediaContent">
+						<div class="image">
+
+							<xen:if is="{$media.service_media} == 'gallery'">
+								<div class="overlays overBtmL"><b>{xen:phrase x_images, 'count={$media.media_duration}'}</b></div>
+							<xen:else />
+								<div class="overlays overBtmR"><b><xen:if is="{$media.media_hours}">{$media.media_hours}:</xen:if>{$media.media_minutes}:{$media.media_seconds}</b></div>
+							</xen:if>
+
+							<a href="{xen:link 'full:media', $media}"><img src="{xen:helper medio, $media}" border="0" alt="{$media.media_title}" /></a>
+						</div>
+						<div class="title">
+							<a href="{xen:link 'full:media', $media}">{$media.media_title}</a>
+						</div>
+					</div>
+				</li>
+			</xen:foreach>
+			</xen:contentcheck>
+		</ul>
+		</xen:if>
+
+		<xen:if is="{$option.search}">
+		<div class="findMember">
+			<form action="{xen:link 'search/search'}" method="post" class="AutoValidator" data-optInOut="optIn" data-redirect="true">
+				<input type="search" name="keywords" class="textCtrl" placeholder="{xen:phrase search_media}..." results="0" title="{xen:phrase enter_your_search_and_hit_enter}" id="searchBar_keywords" value="{$search.keywords}" />
+				<input type="hidden" name="type" value="media" />
+				<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+			</form>
+		</div>
+		</xen:if>
+	</div>
+</div>]]></template>
+  </templates>
+</block>

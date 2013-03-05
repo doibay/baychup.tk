@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="EventsCalendar" title="XenAtendo: Event Calendar" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options/>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_EventsCalendar"><![CDATA[<xen:require css="EWRatendo.css" />
+
+<div class="section">
+	<div class="secondaryContent">
+		<h3><a href="{xen:link 'events/monthly', $EventsCalendar.block}">
+			{xen:phrase 'events_for_x', 'date={$EventsCalendar.block.title}'}
+		</a></h3>
+
+		<xen:include template="EWRatendo_Monthly_Bit_Small">
+			<xen:map from="$EventsCalendar.portal" to="$portal" />
+			<xen:map from="$EventsCalendar.today" to="$today" />
+			<xen:map from="$EventsCalendar.block.dates" to="$dates" />
+		</xen:include>
+	</div>
+</div>]]></template>
+  </templates>
+</block>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="EventsBirthdays" title="XenAtendo: Today's Birthdays" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options/>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_EventsBirthdays"><![CDATA[<xen:if hascontent="true">
+<div class="section">
+	<div class="secondaryContent avatarHeap">
+		<h3>{xen:phrase todays_birthdays}</h3>
+		
+		<ol>
+			<xen:contentcheck>
+			<xen:foreach loop="$EventsBirthdays" value="$user">
+				<li><xen:avatar user="$user" size="s" class="Tooltip" text="{$user.username}{xen:if '{$user.age}', ' ({$user.age})'}" title="{$user.username}{xen:if '{$user.age}', ', {xen:phrase age}: {$user.age}'}" /></li>
+			</xen:foreach>
+			</xen:contentcheck>
+		</ol>
+	</div>
+</div>
+</xen:if>]]></template>
+  </templates>
+</block>

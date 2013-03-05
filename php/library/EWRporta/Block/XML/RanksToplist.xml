@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="RanksToplist" title="XenTorneo: Top Ranks" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+1 hours">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="rankstoplist_league" edit_format="callback" data_type="unsigned_integer" display_order="1">
+      <option_value>1</option_value>
+      <edit_format_params>EWRtorneo_Option_LeagueChooser::renderSelect</edit_format_params>
+      <sub_options></sub_options>
+      <title>Primary League</title>
+      <explain><![CDATA[The selected league's top rankings will be displayed in the block.]]></explain>
+    </option>
+    <option option_id="rankstoplist_limit" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <option_value>5</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Top Ranks Limit</title>
+      <explain><![CDATA[The number of players to display in the top rankings list]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_RanksToplist"><![CDATA[<xen:require css="EWRtorneo.css" />
+
+<xen:include template="EWRtorneo_Sidebar_Ranks">
+	<xen:map from="$RanksToplist" to="$league" />
+</xen:include>]]></template>
+  </templates>
+</block>

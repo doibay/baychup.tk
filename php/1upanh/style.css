@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document by chiplove.9xpro */
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	font-size: 100%;
+}
+:focus {
+	outline: 0;
+}
+
+
+body {
+	background:#DDDDDD;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#666;
+}
+a {
+	text-decoration:none;
+	color:#2A6CBC;
+}
+.note {
+	font-style:italic;
+}
+.wrapper {
+	width:680px;
+	margin:10px auto;
+	background:#F7F7F7;
+	border:1px solid #CCCCCC;
+	padding:12px;
+	border-radius:5px;
+}
+.warning {
+	background:#FFC;
+	color:red;
+	padding:3px;
+	border:1px solid #ccc;
+}
+#header {
+	overflow:hidden;
+	position:relative;
+}
+	#header h1 {
+		font-size: 23px;
+		padding: 0 5px;
+		text-shadow: 0 1px 0 #CCCCCC;
+	}
+	#header .description {
+		font-style:italic;
+		position:absolute;
+		right:5px;
+		top:0;
+		color:#ccc;
+	}
+.body {
+	overflow:hidden;
+	margin:8px 0;
+}
+.option div.rows{
+	margin:5px 0;
+}
+.option span {
+	margin-right:5px;
+	text-shadow: 0px 1px 0px #ddd;
+}
+select, textarea{
+	padding:2px;
+	border:1px solid #ccc;
+	background:#fcfcfc;
+	border-radius:3px;
+}
+option {
+	color:#666;
+}
+.method{
+	display:none;
+}
+
+div.upload {
+	height:25px;
+	width:270px;
+	text-align:right;
+	border:1px solid #ccc;
+	background:#fefefe;
+	border-radius:5px;
+}
+	div.upload span{
+		float:left;
+		height:25px;
+		display:block;
+		line-height:25px;
+		margin-left:5px;
+		font-style:italic;
+	}
+.transload textarea, #list textarea{
+	resize:vertical;
+	width:670px;
+	height:120px;
+}
+textarea, input[type="text"] {
+	color:#555;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.transload .button {
+	outline:none;
+    margin:2px;
+	background:#E0E0E0;
+    padding:3px 6px;  
+	background-image: linear-gradient(bottom, #E0E0E0 -1%, #FFFFFF 85%);
+	background-image: -o-linear-gradient(bottom, #E0E0E0 -1%, #FFFFFF 85%);
+	background-image: -moz-linear-gradient(bottom, #E0E0E0 -1%, #FFFFFF 85%);
+	background-image: -webkit-linear-gradient(bottom, #E0E0E0 -1%, #FFFFFF 85%);
+	background-image: -ms-linear-gradient(bottom, #E0E0E0 -1%, #FFFFFF 85%);
+	border-radius:3px;
+	border: 1px solid #ccc;
+	box-shadow:0 1px 0px 0px #ddd;
+	color:#717171;
+	cursor:pointer
+}
+	.transload .button:hover {
+		color:#333;
+	}
+	
+#result > div{
+	overflow:hidden;
+	margin:3px 0;
+}
+#result .name {
+	width:150px;
+	float:left;
+	overflow:hidden;
+	display:block;
+}
+#result input.link{
+	float:left;
+	margin-left:5px;
+	border:0;
+	background:transparent;
+	width:500px;
+	overflow:hidden;
+}	
+#list {
+	margin-top:6px;
+}
+	#list a{
+		margin-right:10px;
+	}
+#status{
+	color:red;
+}

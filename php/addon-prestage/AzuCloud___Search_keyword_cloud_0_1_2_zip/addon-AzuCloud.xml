@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="AzuCloud" title="AzuCloud" version_string="0.1.2" version_id="6" url="http://xenforo.com/community/threads/azucloud-long-tail-seo-cloud.8659/" install_callback_class="Dark_AzuCloud_Install" install_callback_method="install" uninstall_callback_class="Dark_AzuCloud_Uninstall" uninstall_callback_method="uninstall">
+  <admin_navigation>
+    <navigation navigation_id="azuCloudHeader" parent_navigation_id="applications" display_order="99" link="" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
+    <navigation navigation_id="azuCloudOptions" parent_navigation_id="azuCloudHeader" display_order="99" link="options/list/azuCloud" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
+    <navigation navigation_id="azucloud" parent_navigation_id="azuCloudHeader" display_order="10" link="azucloud/list" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
+  </admin_navigation>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="dark_azucloud_list"><![CDATA[<xen:title>{xen:phrase dark_search_terms}</xen:title>
+
+<xen:require css="filter_list.css" />
+<xen:require css="dark_azucloud_list.css" />
+<xen:require js="js/xenforo/filter_list.js" />
+
+<xen:form action="{xen:adminlink azucloud/list, '', '_params={$linkParams}'}" class="section">
+
+	<h2 class="subHeading">
+		<xen:include template="filter_list_controls" />
+		{xen:phrase dark_terms} 
+({xen:phrase dark_order_by}: 
+<a href="{xen:adminlink 'azucloud/list', '', '_params={$orderParams.hits}'}">{xen:phrase dark_order_hits}</a> |
+<a href="{xen:adminlink 'azucloud/list', '', '_params={$orderParams.last_clicked}'}">{xen:phrase dark_last_clicked}</a> |
+<a href="{xen:adminlink 'azucloud/list', '', '_params={$orderParams.value}'}">{xen:phrase dark_alphabetical}</a> 
+)
+	</h2>
+
+	<ol class="FilterList Scrollable" data-ajaxFilter="true">
+		<xen:include template="dark_azucloud_list_items" />
+	</ol>
+
+	<p class="sectionFooter">{xen:phrase showing_x_of_y_items, 'count=<span class="FilterListCount">{xen:count $terms}</span>', 'total={xen:number $totalTerms}'}</p>
+
+</xen:form>
+
+{xen:adminpagenav $termsPerPage, $totalTerms, $page, azucloud/list, '', '_params={$linkParams}'}]]></template>
+    <template title="dark_azucloud_list.css"><![CDATA[		.FilterList .undelete span
+		{
+			background: transparent url('styles/default/xenforo/permissions/allow.png') no-repeat center center !important;
+		}
+		
+]]></template>
+    <template title="dark_azucloud_list_items"><![CDATA[<xen:foreach loop="$terms" value="$term">
+<xen:set var="$termname"><xen:if is="{$term.block}"><span style="text-decoration:line-through">{$term.value}</span><xen:else />{$term.value}</xen:if></xen:set>
+<xen:set var="$hits">{$term.hits} <xen:if is="{$term.hits} == 1">{xen:phrase dark_hit}<xen:else />{xen:phrase dark_hits}</xen:if></xen:set>
+	<xen:listitem
+		id="{$term.id}"
+		label="{xen:raw $termname}"
+		snippet="{xen:raw $hits} &mdash; {xen:phrase dark_last_clicked}: {xen:date $term.last_clicked}">
+		<xen:html>
+			<xen:if is="{$term.block}">
+				<a href="{xen:adminlink azucloud/block, $term}" class="secondaryContent undelete delete" title="{xen:phrase dark_unblock_detail}"><span>{xen:phrase dark_unblock}</span></a>
+			<xen:else />
+				<a href="{xen:adminlink azucloud/block, $term}" class="secondaryContent delete" title="{xen:phrase dark_block_detail}"><span>{xen:phrase dark_block}</span></a>
+			</xen:if>
+			<a class="secondaryContent" href="{xen:link $term.route}" target="_blank">{$term.route}</a>
+			
+		</xen:html>
+	</xen:listitem>
+</xen:foreach>
+<xen:if is="{$filterMore}">
+	<li class="listNote">{xen:phrase more_records_matching_filter_more_specific}</li>
+</xen:if>]]></template>
+    <template title="dark_option_template_azusa"><![CDATA[<div style='text-align:center;margin-top:25px;padding-right:65px;'><a href="http://xenforo.com/community/threads/azucloud-long-tail-seo-cloud.8659/" target="_blank"><img src="http://imgkk.com/i/o8dm.png" alt="" title="<3 Azunyan~" /></a></div>]]></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="front_controller_pre_view" execute_order="10" callback_class="Dark_AzuCloud_EventListener_FrontControllerPreView" callback_method="listen" active="1" description="Hook every page load"/>
+    <listener event_id="template_hook" execute_order="10" callback_class="Dark_AzuCloud_EventListener_TemplateHook" callback_method="listen" active="1" description="footer ad template hook"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="azuCloud" display_order="9999" debug_only="0"/>
+    <option option_id="dark_azucloud_azusa" edit_format="template" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>dark_option_template_azusa</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="900"/>
+    </option>
+    <option option_id="dark_azucloud_boardurl" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="320"/>
+    </option>
+    <option option_id="dark_azucloud_controllers" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>XenForo_ControllerPublic_Index:index
+XenForo_ControllerPublic_Thread:index
+XenForo_ControllerPublic_Forum:index
+XenForo_ControllerPublic_Member:member
+XenForo_ControllerPublic_Page:index
+XenForo_ControllerPublic_Category:index</default_value>
+      <edit_format_params>rows=8
+inputclass=Elastic</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="110"/>
+    </option>
+    <option option_id="dark_azucloud_cutoff" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>30</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="210"/>
+    </option>
+    <option option_id="dark_azucloud_enabled" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>true</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="1"/>
+    </option>
+    <option option_id="dark_azucloud_limit" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>10</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="220"/>
+    </option>
+    <option option_id="dark_azucloud_operators" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="310"/>
+    </option>
+    <option option_id="dark_azucloud_routes" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>rows=5
+inputclass=Elastic</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="azuCloud" display_order="120"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="admin_navigation_azucloud" version_id="1" version_string="0.0.1"><![CDATA[Search Terms]]></phrase>
+    <phrase title="admin_navigation_azuCloudHeader" version_id="1" version_string="0.0.1"><![CDATA[AzuCloud]]></phrase>
+    <phrase title="admin_navigation_azuCloudOptions" version_id="1" version_string="0.0.1"><![CDATA[Options]]></phrase>
+    <phrase title="dark_alphabetical" version_id="1" version_string="0.0.1"><![CDATA[Alphabetical]]></phrase>
+    <phrase title="dark_block" version_id="1" version_string="0.0.1"><![CDATA[Block]]></phrase>
+    <phrase title="dark_block_detail" version_id="1" version_string="0.0.1"><![CDATA[Block all instances of this search term]]></phrase>
+    <phrase title="dark_hit" version_id="1" version_string="0.0.1"><![CDATA[hit]]></phrase>
+    <phrase title="dark_hits" version_id="1" version_string="0.0.1"><![CDATA[hits]]></phrase>
+    <phrase title="dark_last_clicked" version_id="1" version_string="0.0.1"><![CDATA[Last clicked]]></phrase>
+    <phrase title="dark_order_by" version_id="1" version_string="0.0.1"><![CDATA[Order by]]></phrase>
+    <phrase title="dark_order_hits" version_id="1" version_string="0.0.1"><![CDATA[Hits]]></phrase>
+    <phrase title="dark_search_terms" version_id="1" version_string="0.0.1"><![CDATA[Search Terms]]></phrase>
+    <phrase title="dark_terms" version_id="1" version_string="0.0.1"><![CDATA[Terms]]></phrase>
+    <phrase title="dark_unblock" version_id="1" version_string="0.0.1"><![CDATA[Unblock]]></phrase>
+    <phrase title="dark_unblock_detail" version_id="1" version_string="0.0.1"><![CDATA[Unblock all instances of this search term]]></phrase>
+    <phrase title="dark_users_found_this_page" version_id="1" version_string="0.0.1"><![CDATA[Users found this page by searching for:]]></phrase>
+    <phrase title="option_dark_azucloud_boardurl" version_id="3" version_string="0.0.3"><![CDATA[Ignore board URL]]></phrase>
+    <phrase title="option_dark_azucloud_boardurl_explain" version_id="3" version_string="0.0.3"><![CDATA[Silently ignore queries containing the board URL in its entirety either with or without the www prefix. The http:// prefix is necessary for this to be triggered.]]></phrase>
+    <phrase title="option_dark_azucloud_controllers" version_id="1" version_string="0.0.1"><![CDATA[Active controllers]]></phrase>
+    <phrase title="option_dark_azucloud_controllers_explain" version_id="1" version_string="0.0.1"><![CDATA[This option manages which controllers/actions AzuCloud will be active on. Example uses include threads, forums, pages or anywhere else where the URL varies.<br />
+Enter controllers in the format Controller:action,action,action with one controller per line.]]></phrase>
+    <phrase title="option_dark_azucloud_cutoff" version_id="1" version_string="0.0.1"><![CDATA[Max days since last hit]]></phrase>
+    <phrase title="option_dark_azucloud_cutoff_explain" version_id="1" version_string="0.0.1"><![CDATA[The number of days since the last hit that a search term will continue to be displayed for.]]></phrase>
+    <phrase title="option_dark_azucloud_enabled" version_id="1" version_string="0.0.1"><![CDATA[Enable AzuCloud]]></phrase>
+    <phrase title="option_dark_azucloud_enabled_explain" version_id="1" version_string="0.0.1"><![CDATA[Use this to temporarily disable AzuCloud when necessary.]]></phrase>
+    <phrase title="option_dark_azucloud_limit" version_id="1" version_string="0.0.1"><![CDATA[Term limit]]></phrase>
+    <phrase title="option_dark_azucloud_limit_explain" version_id="1" version_string="0.0.1"><![CDATA[The number of terms to display in each cloud.]]></phrase>
+    <phrase title="option_dark_azucloud_operators" version_id="3" version_string="0.0.3"><![CDATA[Filter operators]]></phrase>
+    <phrase title="option_dark_azucloud_operators_explain" version_id="3" version_string="0.0.3"><![CDATA[Removes search engine operators such as +word, -word, inurl:site.com while keeping the words and links they are prefixed to.]]></phrase>
+    <phrase title="option_dark_azucloud_routes" version_id="1" version_string="0.0.1"><![CDATA[Active routes]]></phrase>
+    <phrase title="option_dark_azucloud_routes_explain" version_id="1" version_string="0.0.1"><![CDATA[Here you may specify individual exact routes (URLs) to include in addition to the controllers specified above. This is ideal for including things such as individual custom pages. You should specify one route per line with no preceding or trailing slash.<br />
+Example usage:<br />
+help/trophies<br />
+help/terms]]></phrase>
+    <phrase title="option_group_azuCloud" version_id="1" version_string="0.0.1"><![CDATA[AzuCloud]]></phrase>
+    <phrase title="option_group_azuCloud_description" version_id="1" version_string="0.0.1"><![CDATA[AzuCloud SEO Cloud by Darkimmortal]]></phrase>
+  </phrases>
+  <route_prefixes>
+    <route_type type="admin">
+      <prefix original_prefix="azucloud" class="Dark_AzuCloud_Route_PrefixAdmin_AzuCloud" build_link="data_only"/>
+    </route_type>
+  </route_prefixes>
+  <style_properties/>
+  <templates>
+    <template title="dark_azucloud" version_id="1" version_string="0.0.1"><![CDATA[<xen:require css="dark_azucloud.css" />
+<xen:require css="node_list.css" />
+<xen:if is="{$dark_azucloud_enable}">
+	<div class="section sectionMain nodeList dark_azucloud">
+		<div class="nodeInfo categoryNodeInfo categoryStrip">		
+			<div class="categoryText">
+				<h3 class="nodeTitle">{xen:phrase dark_users_found_this_page}</h3>				
+			</div>			
+		</div>
+		<div class='dark_azucloud_terms'>
+			<ol class='listInline'>
+				<xen:foreach loop="$dark_azucloud_terms" value="$term" i="$i">
+					<li><{xen:raw $term.tag}>{$term.value}</{xen:raw $term.tag}><xen:if is="{$i} < {$dark_azucloud_count}">, </xen:if></li>
+				</xen:foreach>
+			</ol>
+		</div>
+	</div>
+</xen:if>]]></template>
+    <template title="dark_azucloud.css" version_id="1" version_string="0.0.1"><![CDATA[.dark_azucloud_terms { margin-top: 5px; }
+.dark_azucloud_terms * { font-weight: normal; font-size: 11px; display: inline; }
+.dark_azucloud_terms h2 { font-weight: bold; font-size: 16px; }
+.dark_azucloud_terms h3 { font-weight: bold; font-size: 14px; }
+.dark_azucloud_terms h4 { font-weight: normal; font-size: 13px; }
+.dark_azucloud_terms strong { font-weight: normal; font-size: 12px; }]]></template>
+  </templates>
+  <bb_code_media_sites/>
+</addon>

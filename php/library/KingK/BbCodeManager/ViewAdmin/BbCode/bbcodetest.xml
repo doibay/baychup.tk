@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bbcode>
+  <tag>h2</tag>
+  <title>H2</title>
+  <description>Adds a H2 tag around the contained text.</description>
+  <replacement>
+    <begin><![CDATA[<h2>]]></begin>
+    <end><![CDATA[</h2>]]></end>
+  </replacement>
+  <phpcallback>
+    <class></class>
+    <method></method>
+  </phpcallback>
+  <example><![CDATA[[h2]Header Tag[/h2]]]></example>
+  <active>1</active>
+  <requiresOption>0</requiresOption>
+  <advancedOptions>0</advancedOptions>
+  <numberOfOptions>0</numberOfOptions>
+  <regex></regex>
+  <trimLeadingLinesAfter>0</trimLeadingLinesAfter>
+  <plainCallback>0</plainCallback>
+  <plainChildren>0</plainChildren>
+  <stopSmilies>0</stopSmilies>
+  <stopLineBreakConversion>0</stopLineBreakConversion>
+</bbcode>

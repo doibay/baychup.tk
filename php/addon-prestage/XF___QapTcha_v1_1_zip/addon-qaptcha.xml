@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="qaptcha" title="XF QapTcha" version_string="1.1" version_id="1" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="option_captcha_render" execute_order="10" callback_class="QapTcha_Captcha_Render" callback_method="captcha_render" active="1" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups/>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="qaptcha_lock" version_id="1" version_string="1.0"><![CDATA[Locked: the form can not be sent]]></phrase>
+    <phrase title="qaptcha_noscript_code_notice" version_id="1" version_string="1"><![CDATA[You should turn on JavaScript on your browser. After that please reload the page. Otherwise you wont be able to post any information on this site.]]></phrase>
+    <phrase title="qaptcha_selected" version_id="1" version_string="1.0"><![CDATA[Use XF_QapTcha]]></phrase>
+    <phrase title="qaptcha_unlock" version_id="1" version_string="1.0"><![CDATA[Unlocked: the form can be sent]]></phrase>
+  </phrases>
+  <route_prefixes>
+    <route_type type="public">
+      <prefix original_prefix="qaptcha" class="QapTcha_Route_Prefix_QapTcha" build_link="data_only"/>
+    </route_type>
+  </route_prefixes>
+  <style_properties/>
+  <templates>
+    <template title="captcha_qaptcha" version_id="1" version_string="1.1"><![CDATA[<xen:require js="js/qaptcha/jquery-ui.js" />
+<xen:require js="js/qaptcha/jquery.ui.touch.js" />
+<xen:require js="js/qaptcha/qaptcha.js" />
+<xen:require css="qaptcha.css" />
+<script type='text/javascript'>
+	function refreshQapTcha()
+	{
+		jQuery('.QapTcha').empty().QapTcha({
+			txtLock : '{xen:phrase qaptcha_lock}',
+			txtUnlock : '{xen:phrase qaptcha_unlock}'
+		});
+	}
+
+	jQuery(document).ready(function() {
+		jQuery('.QapTcha').QapTcha({
+			txtLock : '{xen:phrase qaptcha_lock}',
+			txtUnlock : '{xen:phrase qaptcha_unlock}'
+		});
+	});
+</script>
+<div class="QapTcha jsOnly">{xen:phrase loading}...</div><noscript>{$noscript_code_notice}</noscript>]]></template>
+    <template title="qaptcha.css" version_id="1" version_string="1.0"><![CDATA[/*****************/
+/** QapTcha CSS **/
+/*****************/
+.QapTcha {
+	padding:10px;
+	margin-top:10px;
+}
+.QapTcha .clr{clear:both}
+
+.QapTcha #bgSlider {
+	width:202px;
+	height:22px;
+	background:transparent url('styles/default/qaptcha/sprites.png') no-repeat 0 -22px;
+	float:left
+}
+
+.QapTcha #Slider {
+	width:48px;
+	height:22px;
+	background:transparent url('styles/default/qaptcha/sprites.png') no-repeat -32px 0;
+	cursor:e-resize
+}
+
+.QapTcha #Icons {
+	float:left;
+	width:16px;
+	height:16px;
+	background:transparent url('styles/default/qaptcha/sprites.png') no-repeat 0 0;
+	margin-top:3px;
+	margin-left:10px;
+}
+
+.QapTcha #TxtStatus {
+	width:202px;
+	margin-top:7px;
+	text-align:center;
+	font-family:Verdana;
+	font-size:10px;
+	clear:both
+}
+
+/** States **/
+.QapTcha .dropSuccess {
+	color:#568E2F
+}
+.QapTcha .dropError {
+	color:#bb2828
+}]]></template>
+  </templates>
+  <bb_code_media_sites/>
+</addon>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="sonnbPostLinksPermission" title="sonnb - See post's links permission" version_string="1.1.2" version_id="112" url="http://www.sonnb.com" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="sonnbPostLinksPermission_Nodes"><![CDATA[	<xen:controlunit label="{xen:phrase applicable_forums}:">
+		<xen:html>
+			<select id="ApplicableForums" name="{$fieldPrefix}[{$preparedOption.option_id}][]" class="textCtrl" multiple="multiple" size="12" style="width: 350px!important;">
+				<xen:foreach loop="$formatParams" value="$node">
+					<option value="{$node.value}" {xen:selected '{$node.selected}'} {xen:if "{$node.node_type_id} != 'Forum'", 'disabled="disabled"'}>{xen:string repeat, '&nbsp;&nbsp; ', $node.depth}{$node.label}</option>
+				</xen:foreach>
+			</select>
+			<div><label class="muted"><input type="checkbox" id="SelectAllForums" /> <i>{xen:phrase select_all}</i></label></duv>
+			<input type="hidden" name="{$listedFieldName}" value="{$preparedOption.option_id}" />
+			{xen:raw $editLink}
+		</xen:html>
+	<xen:explain>{xen:raw $preparedOption.explain}</xen:explain>
+	</xen:controlunit>
+<script>
+$(function()
+{
+	$('#SelectAllForums').click(function(e)
+	{
+		$('#ApplicableForums').find('option').attr('selected', this.checked);
+	});
+});
+</script>]]></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="sonnb_SeePostLinksPermission_Listener" callback_method="load_class" active="1" description=""/>
+    <listener event_id="load_class_view" execute_order="10" callback_class="sonnb_SeePostLinksPermission_Listener" callback_method="load_class" active="1" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="sonnb_SPLP" display_order="1" debug_only="0"/>
+    <option option_id="sonnb_SPLP_minPostCount" edit_format="spinbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>5</default_value>
+      <edit_format_params>size=3
+min=0</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="sonnb_SPLP" display_order="3"/>
+    </option>
+    <option option_id="sonnb_SPLP_nodes" edit_format="callback" data_type="array" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>sonnb_SeePostLinksPermission_Listener::renderNodes</edit_format_params>
+      <sub_options>*</sub_options>
+      <relation group_id="sonnb_SPLP" display_order="400"/>
+    </option>
+    <option option_id="sonnb_SPLP_options" edit_format="select" data_type="string" can_backup="1">
+      <default_value>post_like</default_value>
+      <edit_format_params>post_count=Base on user's post count
+post_like=Base on post's like</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="sonnb_SPLP" display_order="1"/>
+    </option>
+    <option option_id="sonnb_SPLP_postOption" edit_format="select" data_type="string" can_backup="1">
+      <default_value>all</default_value>
+      <edit_format_params>first=First post only
+all=All the posts</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="sonnb_SPLP" display_order="2"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups>
+      <permission_group permission_group_id="sonnb_SPLP"/>
+    </permission_groups>
+    <permissions>
+      <permission permission_group_id="sonnb_SPLP" permission_id="bypass" permission_type="flag" default_value="unset" interface_group_id="sonnb_SPLP" display_order="1"/>
+    </permissions>
+    <interface_groups>
+      <interface_group interface_group_id="sonnb_SPLP" display_order="1"/>
+    </interface_groups>
+  </permissions>
+  <phrases>
+    <phrase title="option_group_sonnb_SPLP" version_id="3" version_string="1.0.2"><![CDATA[sonnb - See post's links permission]]></phrase>
+    <phrase title="option_group_sonnb_SPLP_description" version_id="3" version_string="1.0.2"><![CDATA[]]></phrase>
+    <phrase title="option_sonnb_SPLP_minPostCount" version_id="3" version_string="1.0.2"><![CDATA[Minimum Post Count]]></phrase>
+    <phrase title="option_sonnb_SPLP_minPostCount_explain" version_id="3" version_string="1.0.2"><![CDATA[User's post count must be at least reach this value to see post's links.
+<br />
+<b>Note:</b> Only effect if you choose option to check user's post count.]]></phrase>
+    <phrase title="option_sonnb_SPLP_nodes" version_id="3" version_string="1.0.2"><![CDATA[Applicable Nodes]]></phrase>
+    <phrase title="option_sonnb_SPLP_nodes_explain" version_id="3" version_string="1.0.2"><![CDATA[The check would be performed on selected nodes only]]></phrase>
+    <phrase title="option_sonnb_SPLP_options" version_id="3" version_string="1.0.2"><![CDATA[Checking Condition]]></phrase>
+    <phrase title="option_sonnb_SPLP_options_explain" version_id="3" version_string="1.0.2"><![CDATA[You are able to choose which condition we should use for permission checking]]></phrase>
+    <phrase title="option_sonnb_SPLP_postOption" version_id="3" version_string="1.0.2"><![CDATA[Filtering Post]]></phrase>
+    <phrase title="option_sonnb_SPLP_postOption_explain" version_id="3" version_string="1.0.2"><![CDATA[]]></phrase>
+    <phrase title="permission_group_sonnb_SPLP" version_id="3" version_string="1.0.2"><![CDATA[sonnb - See post's links permission]]></phrase>
+    <phrase title="permission_interface_sonnb_SPLP" version_id="3" version_string="1.0.2"><![CDATA[sonnb - See post's links permission]]></phrase>
+    <phrase title="permission_sonnb_SPLP_bypass" version_id="3" version_string="1.0.2"><![CDATA[Bypass See Links Check]]></phrase>
+    <phrase title="sonnb_SPLP_message_like_to_guest" version_id="3" version_string="1.0.2"><![CDATA[You have to [URL="{login_link}"]login[/URL] and like this post in order to see this link]]></phrase>
+    <phrase title="sonnb_SPLP_message_like_to_user" version_id="3" version_string="1.0.2"><![CDATA[You have to like this post in order to see this link]]></phrase>
+    <phrase title="sonnb_SPLP_message_post_count" version_id="3" version_string="1.0.2"><![CDATA[Your post count must be {total} in order to see this link. You currently have {current} post(s)]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <bb_code_media_sites/>
+  <template_modifications>
+    <modification title="Add js to thread_view" template_title="thread_view" execute_order="10" modification_type="str_replace" callback_class="" callback_method="" description="" version_id="110" version_string="1.1.0" active="1">
+      <search_value><![CDATA[<xen:require css="thread_view.css" />]]></search_value>
+      <replace_value><![CDATA[<xen:require css="thread_view.css" />
+<xen:require js="js/sonnb/SeePostLinksPermission/LinkLikeHide.js" />]]></replace_value>
+    </modification>
+    <modification title="Replace like button" template_title="post" execute_order="10" modification_type="callback" callback_class="sonnb_SeePostLinksPermission_Listener" callback_method="tms_like_class" description="" version_id="111" version_string="1.1.1" active="1">
+      <search_value><![CDATA[]]></search_value>
+      <replace_value><![CDATA[]]></replace_value>
+    </modification>
+  </template_modifications>
+</addon>

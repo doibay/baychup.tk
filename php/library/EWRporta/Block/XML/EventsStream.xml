@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="EventsStream" title="XenAtendo: Live Stream" version_string="1.0.0" version_id="1" url="http://8wayrun.com/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="+10 minutes">
+  <admin_templates/>
+  <listeners/>
+  <options>
+    <option option_id="eventsstream_width" edit_format="spinbox" data_type="unsigned_integer" display_order="1">
+      <option_value>681</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Stream Embed Width</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="eventsstream_height" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <option_value>414</option_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Stream Embed Height</title>
+      <explain><![CDATA[]]></explain>
+    </option>
+    <option option_id="eventsstream_events" edit_format="callback" data_type="array" display_order="3" validation_class="EWRporta_Option_MultiEntries" validation_method="verifyOption">
+      <option_value>a:0:{}</option_value>
+      <edit_format_params>EWRporta_Option_MultiEntries::renderOption</edit_format_params>
+      <sub_options>*</sub_options>
+      <title>Stream Event IDs</title>
+      <explain><![CDATA[The IDs of events you wish to embed within this block.]]></explain>
+    </option>
+  </options>
+  <phrases>
+    <phrase title="EWRblock_EventsStream_livestream"><![CDATA[Live Stream]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_EventsStream"><![CDATA[<xen:if is="{$EventsStream.service_id}">
+	<div class="section">
+		<div class="secondaryContent" id="eventsStream">
+			<h3><a href="{xen:link events, $EventsStream}">{xen:phrase EWRblock_EventsStream_livestream}</a></h3>
+
+			<xen:include template="EWRatendo_BbCode_Stream">
+				<xen:map from="$EventsStream" to="$event" />
+			</xen:include>
+		</div>
+	</div>
+</xen:if>]]></template>
+  </templates>
+</block>
